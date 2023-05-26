@@ -10,13 +10,13 @@ router.post('/user', createUserProfile)
 
 router.post('/ticket', buyTicket)
 
-router.get('/:userId/ticket', verifyToken, getUsersTicket)
+router.get('/:userId/ticket', getUsersTicket)
 
 router.get('/:userId/events', getEventsByUser)
 
 router.post('/:userId/events', upload, createEventByUser)
 
-router.get('/pay', getAllEvents)
+router.get('/events', getAllEvents)
 
 router.get('/verify', getAllEvents)
 
