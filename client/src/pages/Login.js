@@ -7,7 +7,22 @@ import { Link } from "react-router-dom";
 
 export default function Login() {
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('')
   const loading = '';
+
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Perform form submission or other actions here
+    const form = {
+      "email": email,
+      "password": password,
+    }
+
+    console.log("myform", form);
+
+  };
 
   return (
     <div>
@@ -23,7 +38,7 @@ export default function Login() {
             </div>
 
             <div className="event-form">
-              <div className="input-box">
+            <div className="input-box">
                 <div className="event-title">Email</div>
                 <div>
                   <input
@@ -32,6 +47,9 @@ export default function Login() {
                     placeholder="Email address"
                     required
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+
                   />
                 </div>
               </div>
@@ -45,12 +63,14 @@ export default function Login() {
                     className="event-input"
                     placeholder="Password"
                     type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
               </div>
 
 
-              <button className="create-but">
+              <button className="create-but" onClick={handleLogin}>
                 Log in
               </button>
               <p>Don't have an account? <Link to="/register">Register</Link></p>

@@ -1,13 +1,38 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../context/context";
 import './css/Event.css';
-import { Header, Navbar, Sidebar } from "../components";
-import { Link } from "react-router-dom";
+import { Navbar} from "../components";
+import { Link, useNavigate } from "react-router-dom";
+
 
 
 
 export default function Register() {
 
+  // const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('')
+  const [password2, setPassword2] = useState('');
   const loading = '';
+  // const [currentUser, register] = useAuth()
+
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     navigate('/')
+  //   }
+  // }, [currentUser, navigate]);
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    // Perform form submission or other actions here
+    const form = {
+      "email": email,
+      "password": password,
+    }
+
+    console.log("myform", form);
+
+  };
 
   return (
     <div>
@@ -32,6 +57,9 @@ export default function Register() {
                     placeholder="Email address"
                     required
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+
                   />
                 </div>
               </div>
@@ -45,6 +73,8 @@ export default function Register() {
                     className="event-input"
                     placeholder="Password"
                     type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
               </div>
@@ -57,12 +87,14 @@ export default function Register() {
                     className="event-input"
                     placeholder=" password"
                     type="password"
+                    value={password2}
+                    onChange={(e) => setPassword2(e.target.value)}
                   />
                 </div>
               </div>
 
 
-              <button className="create-but">
+              <button className="create-but" onClick={handleRegister}>
                 Sign Up
               </button>
               <p>Have an account? <Link to="/login">Sign In</Link></p>

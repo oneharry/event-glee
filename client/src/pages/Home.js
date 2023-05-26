@@ -1,11 +1,21 @@
+import { useState, useEffect } from 'react';
 import './css/Home.css';
 import { Link } from 'react-router-dom';
-import {Sidebar, Header, Navbar} from "../components";
+import {Sidebar, Header, Navbar, EventCard} from "../components";
 
 export default function Home() {
-const eventList = ["hi", "hello", "fine"];
 const loading = '';
 const loading1 = '';
+const [allEvents, setEvents] = useState([])
+
+useEffect(() => {
+  fetch('http://localhost:5000/events')
+  .then(res => res.json())
+  .then(data => setEvents(data))
+  .catch(err => {
+    console.log("Error loading events")
+  })
+}, [])
   
     return (
       <div>
@@ -51,7 +61,7 @@ const loading1 = '';
             <div className="home-section1-inner">
               <div className="home-text2">Upcoming events</div>
               <div className="home-flow">
-                {loading1 && eventList.length === 0 ? (
+                {loading1 && allEvents.length === 0 ? (
                   <div
                     style={{
                       color: "black",
@@ -62,11 +72,8 @@ const loading1 = '';
                     Loading.......
                   </div>
                 ) : null}
-                {eventList.map((item) => {
-                  return (
-                    <div>{item}</div>
-                  )
-            
+                {allEvents.map((item) => {
+                  return <EventCard event={item} />
                 })}
               </div>
             </div>
