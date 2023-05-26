@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const multer = require('multer');
+const cors = require('cors');
 
 const bodyParser = require('body-parser')
 const homeRoute = require('./src/routes/app.route')
@@ -12,6 +13,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // parse application/json
 app.use(bodyParser.json())
+
+app.use(cors());
 
 
 //routers
