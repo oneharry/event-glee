@@ -85,7 +85,7 @@ export default function Register() {
                   
                     required
                     className="event-input"
-                    placeholder=" password"
+                    placeholder="password"
                     type="password"
                     value={password2}
                     onChange={(e) => setPassword2(e.target.value)}
