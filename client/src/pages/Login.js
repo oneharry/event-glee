@@ -1,26 +1,36 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import './css/Event.css';
 import { Navbar} from "../components";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../context/context";
 
 
 
 export default function Login() {
 
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
-  const loading = '';
+  const [loading, setLoading] = useState(false);
+  const {login, currentUser} = useAuth()
 
+  useEffect(() => {
+    if (currentUser) {
+      navigate('/')
+    }
+  }, [currentUser, navigate])
 
-  const handleLogin = (e) => {
+  const handleLogin = async(e) => {
     e.preventDefault();
     // Perform form submission or other actions here
-    const form = {
-      "email": email,
-      "password": password,
+    console.log(email, password);
+    
+    try {
+      setLoading(true);
+      await login(email, password);
+    } catch (error) {
+      console.log("Login error", error)
     }
-
-    console.log("myform", form);
 
   };
 
