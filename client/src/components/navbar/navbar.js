@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css';
+import { useAuth } from '../../context/context';
+
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(true);
-
+  const {currentUser, logout} = useAuth();
 
 
   return (
@@ -29,11 +30,19 @@ const Navbar = () => {
 
         <div className="nav-inner">
           <button className="nav-button"> Create event</button>
-          <button className="nav-button"> Sign In</button>
-          <button
-            className="nav-button">
-            Profile
-          </button>
+          {
+            !currentUser ? (<Link className="nav-button" to={'/login'}> Sign In</Link>) : (
+              <div>
+                <button className="nav-button" onClick={logout}> Sign Out</button>
+                <button
+                  className="nav-button">
+                  Profile
+                </button>
+              </div>
+            )
+          }
+          
+          
           
         </div>
       </div>

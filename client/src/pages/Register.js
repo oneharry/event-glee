@@ -9,28 +9,36 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Register() {
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('');
-  const loading = '';
-  // const [currentUser, register] = useAuth()
+  const [loading, setLoading] = useState('false');
+  const {register, currentUser} = useAuth();
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     navigate('/')
-  //   }
-  // }, [currentUser, navigate]);
+  useEffect(() => {
+    
+    console.log("USERzhg", currentUser)
+    if (currentUser) {
+      navigate('/')
+    }
+  }, [currentUser, navigate]);
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     // Perform form submission or other actions here
-    const form = {
-      "email": email,
-      "password": password,
+    console.log(email, password, password2);
+    
+    if (password !== password2) {
+      console.log("Password do not match")
     }
-
-    console.log("myform", form);
+    try {
+      setLoading(true);
+      await register(email, password);
+      console.log("USER", currentUser)
+    } catch (error) {
+      console.log("Failed to register", error)
+    }
 
   };
 

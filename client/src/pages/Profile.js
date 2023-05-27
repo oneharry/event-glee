@@ -1,6 +1,7 @@
 import React, { useRef, useContext, useState, useEffect } from "react";
 import './css/Profile.css'
 import { Sidebar, Header, Navbar, TicketCard, EventCard } from "../components";
+import axios from 'axios';
 
 export default function Profile() {
 
@@ -18,16 +19,13 @@ export default function Profile() {
   }, []);
 
 
-  const getMyEvents = () => {
-    fetch('http://localhost:5000/1/events')
-    .then(res => res.json())
-    .then(data => {
-      console.log("data", data)
-      setMyEvents(data)
-    })
-    .catch(err => {
+  const getMyEvents = async() => {
+    try {
+      const res = await axios.get('http://localhost:5000/1/events');
+      console.log(res.data);
+    } catch (error) {
       console.log("Error loading events")
-    })
+    }
   }
 
   const getMyTickets = () => {
