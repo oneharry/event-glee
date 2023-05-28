@@ -1,7 +1,7 @@
 import React from "react";
 import './css/Discover.css';
 
-import { Footer, Sideba } from "../components";
+import { Footer } from "../components";
 
 
 export default function Discover() {
