@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import './css/Discover.css';
 
 import { Footer, Sideba } from "../components";
