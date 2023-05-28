@@ -1,7 +1,7 @@
 import React, { useRef, useContext } from "react";
 import './css/Discover.css';
 
-import { Footer, Sidebar, Header, Navbar } from "../components";
+import { Footer, Sideba } from "../components";
 
 
 export default function Discover() {
