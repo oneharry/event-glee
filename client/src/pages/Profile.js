@@ -1,7 +1,8 @@
-import React, { useRef, useContext, useState, useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import './css/Profile.css'
-import { Sidebar, Header, Navbar, TicketCard, EventCard } from "../components";
+import { Navbar, TicketCard, EventCard } from "../components";
 import axios from 'axios';
+import { useAuth } from "../context/context";
 
 export default function Profile() {
 
@@ -11,7 +12,9 @@ export default function Profile() {
   const loading1 = '';
   const [myEvents, setMyEvents] = useState([])
   const [myTickets, setMyTickets] = useState([])
-  const [myInfo, setMyInfo] = useState([])
+  
+  const {currentUser} = useAuth();
+
 
   useEffect(() => {
     getMyEvents()
@@ -21,23 +24,20 @@ export default function Profile() {
 
   const getMyEvents = async() => {
     try {
-      const res = await axios.get('http://localhost:5000/1/events');
-      console.log(res.data);
+      const res = await axios.get(`http://localhost:5000/${currentUser.uid}/events`);
+      setMyEvents(res.data);
     } catch (error) {
       console.log("Error loading events")
     }
   }
 
-  const getMyTickets = () => {
-    fetch('http://localhost:5000/1/ticket')
-    .then(res => res.json())
-    .then(data => {
-      console.log("data", data)
-      setMyTickets(data)
-    })
-    .catch(err => {
-      console.log("Error loading events")
-    })
+  const getMyTickets = async() => {
+    try {
+      const res = await axios.get(`http://localhost:5000/${currentUser.uid}/ticket`);
+      setMyTickets(res.data);
+    } catch (error) {
+      console.log("Error", error)
+    }
   }
 
   return (

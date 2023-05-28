@@ -2,6 +2,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import {Home, Discover, Profile, Event, Login, Register} from './pages/index';
 import { AuthProvider } from "./context/context";
 
+
 function App() {
   return (
     <div className="App">

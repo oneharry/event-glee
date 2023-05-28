@@ -3,6 +3,7 @@ import { useAuth } from "../context/context";
 import './css/Event.css';
 import { Navbar} from "../components";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 
@@ -14,13 +15,14 @@ export default function Register() {
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('');
   const [loading, setLoading] = useState('false');
+  const [token, setToken] = useState('')
   const {register, currentUser} = useAuth();
+
 
   useEffect(() => {
     
-    console.log("USERzhg", currentUser)
     if (currentUser) {
-      navigate('/')
+      // navigate('/')
     }
   }, [currentUser, navigate]);
 
@@ -34,8 +36,20 @@ export default function Register() {
     }
     try {
       setLoading(true);
-      await register(email, password);
-      console.log("USER", currentUser)
+      // await register(email, password);
+      const tok = await currentUser.getIdToken();
+      setToken(tok);
+
+      const data = {
+        "email": email,
+        "password": password,
+        "userId": currentUser.uid
+      }
+      console.log(data)
+      const res = await axios.post('http://localhost:5000/user', data);
+
+      console.log(res.data);
+      setLoading(false);
     } catch (error) {
       console.log("Failed to register", error)
     }

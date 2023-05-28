@@ -12,6 +12,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState();
     const [loading, setLoading] = useState(true);
+    const [token, setToken] = useState();
   
     useEffect(() => {
       // Subscribe to Firebase authentication state changes
@@ -24,6 +25,10 @@ export const AuthProvider = ({ children }) => {
       return () => unsubscribe();
     }, []);
 
+    const getUserJWT = async () => {
+      const tok = await currentUser.getIdToken();
+      setToken(tok);
+    }
     const register = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
       }
@@ -40,7 +45,9 @@ export const AuthProvider = ({ children }) => {
         currentUser,
         login,
         register,
-        logout
+        logout,
+        token,
+        getUserJWT
       }
   
     return (

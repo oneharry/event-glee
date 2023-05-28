@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import './css/Home.css';
 import { Link } from 'react-router-dom';
-import {Sidebar, Header, Navbar, EventCard} from "../components";
+import {Header, Navbar, EventCard} from "../components";
 import { useAuth } from '../context/context';
+import axios from 'axios';
+
 
 export default function Home() {
 const loading = '';
@@ -11,14 +13,18 @@ const [allEvents, setEvents] = useState([])
 const {currentUser} = useAuth();
 
 useEffect(() => {
-  console.log("user", currentUser);
-  fetch('http://localhost:5000/events')
-  .then(res => res.json())
-  .then(data => setEvents(data))
-  .catch(err => {
+  getAllEvents();
+}, [])
+
+const getAllEvents = async () => {
+  try {
+    const res = await axios.get('http://localhost:5000/events')
+    setEvents(res.data)
+    console.log(allEvents)
+  } catch (error) {
     console.log("Error loading events")
-  })
-}, [currentUser])
+  }
+}
   
     return (
       <div>
@@ -75,9 +81,13 @@ useEffect(() => {
                     Loading.......
                   </div>
                 ) : null}
-                {allEvents.map((item) => {
-                  return <EventCard event={item} />
-                })}
+                {
+                  !allEvents ? <h1>Loading...</h1> : (
+                    allEvents.map((item) => {
+                      return <EventCard event={item} />
+                    })
+                  )
+                }
               </div>
             </div>
           </section>

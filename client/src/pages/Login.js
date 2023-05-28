@@ -28,6 +28,7 @@ export default function Login() {
     try {
       setLoading(true);
       await login(email, password);
+      setLoading(false)
     } catch (error) {
       console.log("Login error", error)
     }

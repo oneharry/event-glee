@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './css/Event.css';
 import { Header, Navbar, Sidebar } from "../components";
+import { useAuth } from "../context/context";
+import axios from 'axios';
+
 
 export default function Event() {
   const [eventName, setEventName] = useState('');
@@ -15,11 +18,18 @@ export default function Event() {
   const [organizer, setOrganizer] = ('');
   const [loading, setLoading] = useState(false);
 
+  const {token, getUserJWT, currentUser} = useAuth();
 
-  const handleSubmit = (e) => {
+
+  useEffect(() => {
+    getUserJWT();
+  })
+
+
+  const handleSubmit = async(e) => {
     e.preventDefault();
     // Perform form submission or other actions here
-    const form = {
+    const data = {
       "name": eventName,
       "category": category,
       "description": description,
@@ -32,7 +42,21 @@ export default function Event() {
       "image": eventImage
     }
 
-    console.log("myform", form);
+    try {
+      setLoading(true);
+    
+      console.log(data)
+      const res = await axios.post(`http://localhost:5000/${currentUser.uid}/events`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }, data );
+
+      console.log(res.data);
+      setLoading(false);
+    } catch (error) {
+      console.log("Failed to register", error)
+    }
 
   };
 
