@@ -57,7 +57,6 @@ export default function Register() {
   return (
     <div>
       <Navbar />
-      <main>
         <form>
           <section className="event-section1">
             <div className="event-text1">Sign Up</div>
@@ -123,7 +122,6 @@ export default function Register() {
             </div>
           </section>
         </form>
-      </main>
       {loading === true ? (
         <div className="loading-card">
           <div>

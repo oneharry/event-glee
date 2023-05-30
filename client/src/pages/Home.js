@@ -38,8 +38,6 @@ useEffect(() => {
         {/* <Sidebar /> */}
         <Navbar />
         <div className="event">
-          <Header />
-  
           <div className="home-text1">Buy event tickets using crypto</div>
   
           <div>
@@ -55,50 +53,38 @@ useEffect(() => {
               </Link>
             </button>
           </div>
-  
-          <div className="home-category">
-            <div>Arts</div>
-            <div>Design</div>
-            <div>Fashion</div>
-            <div>Tech</div>
-            <div>Music</div>
-          </div>
-          <div className="home-category2">
-            <div>Business</div>
-            <div>Sports</div>
-            <div>Comedy</div>
-            <div>Health</div>
-            <div>Education</div>
+          <div className="category-section">
+            <div className="home-category">
+              <div>Arts</div>
+              <div>Design</div>
+              <div>Fashion</div>
+              <div>Tech</div>
+              <div>Music</div>
+            </div>
+            <div className="home-category2">
+              <div>Business</div>
+              <div>Sports</div>
+              <div>Comedy</div>
+              <div>Health</div>
+              <div>Education</div>
+            </div>
           </div>
         </div>
-  
-        <main>
-          <section className="home-section1">
+
+        <section className="home-section1">
             <div className="home-section1-inner">
-              <div className="home-text2">Upcoming events</div>
               <div className="home-flow">
-                {loading1 && allEvents.length === 0 ? (
-                  <div
-                    style={{
-                      color: "black",
-                      textAlign: "center",
-                      fontSize: "24px",
-                    }}
-                  >
-                    Loading.......
-                  </div>
-                ) : null}
                 {
-                  !allEvents ? <h1>Loading...</h1> : (
+                  (!allEvents && loading) ? <h1>Loading...</h1> : ((!allEvents && !loading) ? <h1>There are no upcoming event(s)</h1> :
+                    (
                     allEvents.map((item) => {
                       return <EventCard event={item} />
-                    })
+                    }))
                   )
                 }
               </div>
             </div>
-          </section>
-        </main>
+        </section>
         {/* { <Footer /> } */}
         {loading === true ? (
           <div className="loading-card">

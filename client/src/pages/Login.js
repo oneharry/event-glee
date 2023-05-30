@@ -38,7 +38,6 @@ export default function Login() {
   return (
     <div>
       <Navbar />
-      <main>
         <form>
           <section className="event-section1">
             <div className="event-text1">Sign In</div>
@@ -91,7 +90,6 @@ export default function Login() {
             </div>
           </section>
         </form>
-      </main>
       {loading === true ? (
         <div className="loading-card">
           <div>

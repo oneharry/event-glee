@@ -1,4 +1,5 @@
 import React, {useState, useEffect } from "react";
+import {useNavigate} from 'react-router-dom'
 import './css/Profile.css'
 import { Navbar, TicketCard, EventCard } from "../components";
 import axios from 'axios';
@@ -13,13 +14,17 @@ export default function Profile() {
   const [myEvents, setMyEvents] = useState([])
   const [myTickets, setMyTickets] = useState([])
   
+  const navigate = useNavigate()
   const {currentUser, token} = useAuth();
 
 
   useEffect(() => {
+    if (!currentUser) {
+      navigate('/login')
+    }
     getMyEvents()
     getMyTickets()
-  }, []);
+  }, [currentUser]);
 
 
   const getMyEvents = async() => {

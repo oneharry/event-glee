@@ -2,9 +2,9 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWw04FZYnpq8GUUGNfjKbLJKJYPXf5AMQX_g&usqp=CAU');
-     */
-     background: linear-gradient(to bottom right, #00d395);
+    min-height: 80vh;
+    padding-top: 20px;
+    background-image: linear-gradient(to bottom right, white, #026447, rgb(155, 247, 155))
   }
   
   .event-text1 {
@@ -17,7 +17,7 @@
   }
   
   .line1 {
-    border-bottom: 2px solid #00d395;
+    border-bottom: 2px solid #026447;
     width: 100px;
   }
   
@@ -32,20 +32,19 @@
     margin-left: auto;
     margin-right: auto;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 10px;
   }
   
   .event-title {
     font-family: "League Spartan", sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
-    color: #ffffff;
+    font-size: large;
+    color: black;
     margin-bottom: 16px;
   }
   
   .event-form {
-    margin-top: 10px;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
@@ -60,6 +59,8 @@
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #026447;
   }
   
   .input-box {
@@ -75,9 +76,10 @@
     font-weight: 600;
     font-size: 18px;
     color: white;
-    background: #00d395;
+    background: #026447;
     display: block;
     margin-left: auto;
+    cursor: pointer;
   }
   
   .loading-card {
@@ -97,6 +99,10 @@
     right: 0;
   }
   
+  main {
+    padding: 0;
+    margin: 0
+  }
   .loading-text {
     position: relative;
     top: -100px;

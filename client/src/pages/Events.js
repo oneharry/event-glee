@@ -26,7 +26,7 @@ export default function Event() {
     if(!currentUser) {
       navigate('/login')
     }
-  })
+  }, [currentUser])
 
 
   const handleSubmit = async(e) => {
@@ -66,7 +66,6 @@ export default function Event() {
   return (
     <div>
       <Navbar />
-      <main>
         <form>
           <section className="event-section1">
             <div className="event-text1">Create Event</div>
@@ -233,7 +232,6 @@ export default function Event() {
             </div>
           </section>
         </form>
-      </main>
       {/* Loading state */}
       {loading && (
         <div className="loading-card">
