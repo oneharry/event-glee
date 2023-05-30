@@ -1,7 +1,7 @@
 const conn = require('../config/db.config')
 
 //get all events in db
-exports.getEvents = async () => {
+const getEvents = async () => {
     try {
       const [rows] = await conn.query(`SELECT * FROM events`);
       return rows;
@@ -11,7 +11,7 @@ exports.getEvents = async () => {
 };
 
   //get users events
-exports.getUserEvents = async (userId) => {
+const getUserEvents = async (userId) => {
     try {
         const [rows] = await conn.query(`
         SELECT * FROM events
@@ -26,9 +26,11 @@ exports.getUserEvents = async (userId) => {
 //get event by eventId
 const getEventById = async (eventId) => {
     try {
-        const rows = await conn.query(`
-        SELECT * FROM events
-        WHERE eventId = ?
+        const [rows] = await conn.query(`
+        SELECT * FROM events AS e
+        INNER JOIN users AS u
+        ON e.userId = u.userId
+        WHERE e.eventId = ?
         `, [eventId]);
         return rows[0];
       } catch (error) {
@@ -37,15 +39,18 @@ const getEventById = async (eventId) => {
 }
 
 // create event
-exports.createEvent = async (ev) => {
+const createEvent = async (ev) => {
     try {
+      const {name, category, venue, description, amount, totalTickets, start, end, imageUrl, userId, eventId, organizer} = ev;
         const [result] = await conn.query(`
         INSERT INTO events
-        (name, category, venue, description, price, totalTickets, start, end, image, userId)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `, [ev.name, ev.cat, ev.venue, ev.desc, ev.price, ev.totalTickets, ev.start, ev.end, ev.image, ev.userId]);
-        return getEventById(result.insertId);
+        (name, category, venue, description, amount, totalTickets, start, end, imageUrl, userId, eventId, organizer)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `, [name, category, venue, description, amount, totalTickets, start, end, imageUrl, userId, eventId, organizer]);
+        console.log("Event added to DB")
       } catch (error) {
-        console.error('Error retrieving events:', error);
+        console.error('Error adding event to DB:', error);
       }     
 }
+
+module.exports = {getEventById, getEvents, createEvent, getUserEvents};

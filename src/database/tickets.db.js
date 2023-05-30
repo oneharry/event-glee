@@ -11,18 +11,18 @@ exports.getUserEventTickets = async (userId) => {
         WHERE t.userId = ?
         `, [userId]);
         return rows;
-      } catch (error) {
+    } catch (error) {
         console.error('Error retrieving events:', error);
-      }    
+    }    
 }
 
-//get ticket by ticketid
-const getTicketByNumber = async (ticketNumber) => {
+// get ticket by ticketid
+const getTicketById = async (ticketId) => {
     try {
         const [rows] = await conn.query(`
-        SELECT * FROM tickets
-        WHERE ticketNumber = ?
-        `, [ticketNumber]);
+        SELECT * FROM tickets 
+        WHERE ticketId = ?
+        `, [ticketId]);
         return rows[0];
       } catch (error) {
         console.error('Error retrieving events:', error);
@@ -35,10 +35,10 @@ exports.createTicket = async (ticket) => {
     try {
         const [result] = await conn.query(`
         INSERT INTO tickets
-        (ticketNumber, eventId, userId)
+        (ticketId, eventId, userId)
         VALUES (?, ?, ?)
-        `, [ticket.ticketNumber, ticket.eventId, ticket.userId]);
-        return getTicketByNumber(ticket.ticketNumber);
+        `, [ticket.ticketId, ticket.eventId, ticket.userId]);
+        // return getTicketById(ticket.ticketId);
       } catch (error) {
         console.error('Error retrieving events:', error);
       }     

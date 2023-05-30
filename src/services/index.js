@@ -1,5 +1,5 @@
 const {sendMail} = require('./mail.service')
-const {createTicket} = require('./pdf.service')
+const {createTicketPDF} = require('./pdf.service')
 
 
-module.exports = {sendMail};
+module.exports = {sendMail, createTicketPDF};

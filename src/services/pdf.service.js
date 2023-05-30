@@ -3,17 +3,41 @@ const fs = require('fs');
 const doc = new PDFDocument({size: 'A4'})
 
 
-const createTicket = async () => {
-    const imgurl = 'student2' 
-    const ticketNumber = 19;
-    const eventName = 'TEst event lormewnjjfdjkmnsdjknsdjvnsdkjmvnsdjvnjcj'
-    const eventDate = "saturdar, 13 Dec 2023"
-    const eventPrice = 1000;
+exports.createTicketPDF = async (data, ticketId) => {
+    const {name, start, end, amount} = data
+    const imgurl = './student2.jpg'
 
+    const dateCompare = (start, end) => {
+        const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
 
-    try {
+        const formattedDate1 = start.toLocaleDateString(undefined, options);
+        const formattedDate2 = end.toLocaleDateString(undefined, options);
+
+        if (start.toDateString() === end.toDateString()) {
+            const timeDiff = Math.abs(end - start);
+            const formattedTimeDiff = new Date(timeDiff).toISOString().substr(11, 8);
+            return `${formattedDate1} - ${formattedTimeDiff}`;
+        } else {
+            const dates = [];
+            const currentDate = new Date(start);
+            currentDate.setHours(0, 0, 0, 0);
+            const endDate = new Date(end);
+            endDate.setHours(0, 0, 0, 0);
+
+            while (currentDate <= endDate) {
+            dates.push(currentDate.toLocaleDateString(undefined, options));
+            currentDate.setDate(currentDate.getDate() + 1);
+            }
+
+            return dates.join('\n');
+        }
+    }
+
+    const date = dateCompare(start, end);
+    const price = (amount == 0) ? "Free" : `N${amount}`;
     
-        doc.pipe(fs.createWriteStream('test.pdf'));
+    try {
+        // doc.pipe(fs.createWriteStream(`${eventName}_${tickedId}.pdf`));
 
         doc.moveUp(3)
         doc.fillColor('green')
@@ -26,8 +50,8 @@ const createTicket = async () => {
 
         doc.moveDown()
         doc.fillColor('black')
-        .fontSize(8)
-        .text(`Ticket No: ${ticketNumber}`, {
+        .fontSize(15)
+        .text(`Ticket No: ${ticketId}`, {
             width: 200,
             align: 'left'
         })
@@ -36,7 +60,7 @@ const createTicket = async () => {
         doc.fillColor('black')
         .fontSize(20)
         .font('Times-Roman')
-        .text(`${eventName}`, {
+        .text(`${name}`, {
             width: 300,
             align: 'center'
         })
@@ -44,7 +68,7 @@ const createTicket = async () => {
         doc.moveDown(0.5)
         doc.fillColor('black')
         .fontSize(15)
-        .text(`${eventDate}`, {
+        .text(`${date}`, {
             width: 200,
             align: 'left'
         })
@@ -53,7 +77,7 @@ const createTicket = async () => {
         doc.moveDown()
         doc.fillColor('black')
         .fontSize(15)
-        .text(`N${eventPrice}`, {
+        .text(`${price}`, {
             width: 200,
             align: 'left'
         })
@@ -67,15 +91,16 @@ const createTicket = async () => {
             align: 'right'
         })
 
-        doc
-        .image(`${imgurl}`, 430, 80, {
-            width: 100,
-            height: 100,
-            align: 'right'
-        })
-        .moveUp()
+        // doc
+        // .image(`${imgurl}`, 430, 80, {
+        //     width: 100,
+        //     height: 100,
+        //     align: 'right'
+        // })
+        // .moveUp()
 
         doc.end()
+        return doc;
     } catch (error) {
         console.log("Error writing pdf", error)
     }

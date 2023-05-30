@@ -13,15 +13,15 @@ exports.getUser = async (userId) => {
     }
 };
 
-exports.createUser = async (email) => {
+exports.createUser = async (id, email) => {
     try {
         const [result] = await conn.query(`
         INSERT INTO users
-        (email)
-        VALUES (?)
-        `, [email]);
-        return this.getUser(result.insertId);
+        (userId, email)
+        VALUES (?, ?)
+        `, [id, email]);
+        console.log("User added to DB")
       } catch (error) {
-        console.error('Error retrieving events:', error);
+        console.error('Error adding user to DB:', error);
       }     
 }

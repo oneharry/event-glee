@@ -13,7 +13,7 @@ export default function Profile() {
   const [myEvents, setMyEvents] = useState([])
   const [myTickets, setMyTickets] = useState([])
   
-  const {currentUser} = useAuth();
+  const {currentUser, token} = useAuth();
 
 
   useEffect(() => {
@@ -24,7 +24,11 @@ export default function Profile() {
 
   const getMyEvents = async() => {
     try {
-      const res = await axios.get(`http://localhost:5000/${currentUser.uid}/events`);
+      const res = await axios.get(`http://localhost:5000/${currentUser.uid}/events`, {
+        headers: {
+          authorization: `Bearer ${token}`
+        }
+      });
       setMyEvents(res.data);
     } catch (error) {
       console.log("Error loading events")
@@ -33,7 +37,11 @@ export default function Profile() {
 
   const getMyTickets = async() => {
     try {
-      const res = await axios.get(`http://localhost:5000/${currentUser.uid}/ticket`);
+      const res = await axios.get(`http://localhost:5000/${currentUser.uid}/ticket`, {
+        headers: {
+          authorization: `Bearer ${token}`
+        }
+      });
       setMyTickets(res.data);
     } catch (error) {
       console.log("Error", error)

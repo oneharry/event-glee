@@ -8,8 +8,9 @@ const storage = multer.diskStorage({
 })
 
 exports.upload = multer({
-    storage: storage
-}).single('image')
+    // storage: storage
+    dest: 'uploads/'
+}).single('images')
 
 
 

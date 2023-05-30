@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
     const getUserJWT = async () => {
       const tok = await currentUser.getIdToken();
       setToken(tok);
+      return tok;
     }
     const register = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);

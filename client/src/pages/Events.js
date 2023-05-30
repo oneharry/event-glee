@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import './css/Event.css';
 import { Header, Navbar, Sidebar } from "../components";
 import { useAuth } from "../context/context";
@@ -15,14 +16,16 @@ export default function Event() {
   const [numberOfTickets, setNumberOfTickets] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [organizer, setOrganizer] = ('');
+  const [organizer, setOrganizer] = useState('');
   const [loading, setLoading] = useState(false);
 
   const {token, getUserJWT, currentUser} = useAuth();
-
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getUserJWT();
+    if(!currentUser) {
+      navigate('/login')
+    }
   })
 
 
@@ -38,7 +41,7 @@ export default function Event() {
       "totalTickets": numberOfTickets,
       "start": startDate,
       "end": endDate,
-      "ornaizer": organizer,
+      "organizer": organizer,
       "image": eventImage
     }
 
@@ -46,11 +49,11 @@ export default function Event() {
       setLoading(true);
     
       console.log(data)
-      const res = await axios.post(`http://localhost:5000/${currentUser.uid}/events`, {
+      const res = await axios.post(`http://localhost:5000/${currentUser.uid}/events`, data, {
         headers: {
-          Authorization: `Bearer ${token}`
+          authorization: `Bearer ${token}`
         }
-      }, data );
+      });
 
       console.log(res.data);
       setLoading(false);
@@ -73,7 +76,7 @@ export default function Event() {
             </div>
             <div className="event-form">
               <div className="input-box">
-                <div className="event-title">Dvent name</div>
+                <div className="event-title">Event name</div>
                 <div>
                   <input
                     className="event-input"
@@ -136,7 +139,7 @@ export default function Event() {
                     accept="image/*"
                     placeholder="choose face of your event"
                     value={eventImage}
-                    onChange={(e) => setEventImage(e.target.value)}
+                    onChange={(e) => setEventImage(e.target.files[0])}
                   />
                 </div>
               </div>

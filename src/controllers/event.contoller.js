@@ -1,6 +1,7 @@
 const {getEvents, getUserEvents, createEvent} = require('../database')
 const cloudinary = require('../config/cloudinary.config')
 const dataUri = require('../middleware/multer')
+const { v4: uuidv4 } = require('uuid')
 
 
 //get events owned by user userId
@@ -12,24 +13,30 @@ exports.getEventsByUser = async (req, res) => {
 
 //create an event
 exports.createEventByUser = async (req, res) => {
-    const result = await cloudinary.uploader.upload(req.file.path);
-    
+    // console.log("FILE", req.files)
+    // return
+    // const result = await cloudinary.uploader.upload(req.file.path);
+    // console.log("CLoudinary", result)
 
     const data = req.body;
-    const currentDate = new Date();
+    const eventId = uuidv4();
     
     const form = {
+        'eventId': eventId,
         'name': data.name,
-        'cat': data.category,
+        'category': data.category,
         'venue': data.venue,
-        'desc': data.description,
-        'price': data.price,
+        'description': data.description,
+        'amount': data.price,
         'totalTickets': data.totalTickets,
-        'start': currentDate,
-        'end': currentDate,
-        'image': result.url,
+        'start': data.start,
+        'end': data.end,
+        'imageUrl': 'result.url',
+        'organizer': data.organizer,
         'userId': req.params.userId
     }
+
+    console.log("EVEN", form)
     try {
         const result = await createEvent(form);
         res.status(201).send(result);

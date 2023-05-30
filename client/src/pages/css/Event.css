@@ -2,8 +2,9 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 50px;
-    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWw04FZYnpq8GUUGNfjKbLJKJYPXf5AMQX_g&usqp=CAU');
+    /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWw04FZYnpq8GUUGNfjKbLJKJYPXf5AMQX_g&usqp=CAU');
+     */
+     background: linear-gradient(to bottom right, #00d395);
   }
   
   .event-text1 {
@@ -44,11 +45,11 @@
   }
   
   .event-form {
-    margin-top: 56px;
+    margin-top: 10px;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
   }
   
   .event-input {
@@ -62,7 +63,7 @@
   }
   
   .input-box {
-    margin-bottom: 48px;
+    margin-bottom: 30px;
   }
   
   .create-but {
@@ -99,4 +100,14 @@
   .loading-text {
     position: relative;
     top: -100px;
+  }
+
+  .page-text {
+    color: white;
+    font-size: large;
+    text-align: center;
+    margin: 12px 0;
+  }
+  .page-text Link {
+    color: #00d395;
   }

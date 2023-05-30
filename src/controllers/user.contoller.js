@@ -3,12 +3,11 @@ const {sendMail} = require('../services')
 
 //creates a user profile in the database
 exports.createUserProfile = async (req, res) => {
-    const email = req.body.email
+    const {userId, email} = req.body
 
     try {
-        const result = await createUser(email);
-        const mailRes = await sendMail()
-        console.log("Mail", mailRes.response);
+        
+        const result = await createUser(userId, email);
         res.status(201).send(result);
     } catch (error) {
         console.error('Error creating event:', error);

@@ -15,14 +15,13 @@ export default function Register() {
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('');
   const [loading, setLoading] = useState('false');
-  const [token, setToken] = useState('')
   const {register, currentUser} = useAuth();
 
 
   useEffect(() => {
     
     if (currentUser) {
-      // navigate('/')
+      navigate('/')
     }
   }, [currentUser, navigate]);
 
@@ -33,23 +32,22 @@ export default function Register() {
     
     if (password !== password2) {
       console.log("Password do not match")
+      return
     }
     try {
-      setLoading(true);
-      // await register(email, password);
-      const tok = await currentUser.getIdToken();
-      setToken(tok);
+      // setLoading(true);
+      const res = await register(email, password);
 
-      const data = {
-        "email": email,
-        "password": password,
-        "userId": currentUser.uid
-      }
-      console.log(data)
-      const res = await axios.post('http://localhost:5000/user', data);
+      
+        const data = {
+          "email": email,
+          "userId": res.user.uid
+        }
+        console.log(data)
+        await axios.post('http://localhost:5000/user', data);
 
-      console.log(res.data);
       setLoading(false);
+      navigate('/')
     } catch (error) {
       console.log("Failed to register", error)
     }
@@ -119,7 +117,9 @@ export default function Register() {
               <button className="create-but" onClick={handleRegister}>
                 Sign Up
               </button>
-              <p>Have an account? <Link to="/login">Sign In</Link></p>
+              <div className="page-text">
+                <p>Have an account? <Link to="/login">Sign In</Link></p>
+              </div>
             </div>
           </section>
         </form>

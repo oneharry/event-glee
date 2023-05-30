@@ -1,5 +1,6 @@
 const {getEventsByUser, createEventByUser, getAllEvents} = require('./event.contoller')
-const {buyTicket, getUsersTicket} = require('./ticket.controller')
+const {getUsersTicket} = require('./ticket.controller')
 const {createUserProfile} = require('./user.contoller')
+const {buyTicket, verifyPay} = require('./payment.controller')
 
-module.exports = {getEventsByUser, createEventByUser, getAllEvents, buyTicket, getUsersTicket, createUserProfile}
+module.exports = {getEventsByUser, createEventByUser, getAllEvents, buyTicket, getUsersTicket, createUserProfile, verifyPay}

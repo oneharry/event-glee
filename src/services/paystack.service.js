@@ -2,7 +2,7 @@ const {initializePayment, verifyPayment} = require('../utils/payment.utils')
 
 
 exports.makePayment = async (data) => {
-    const ref = await initializePayment(data, (err, body) => {
+    return initializePayment(data, (err, body) => {
         if(err) {
             console.log(err)
         } else {
@@ -11,7 +11,7 @@ exports.makePayment = async (data) => {
             return response;
         }
     })
-    return ref;
+    // return ref;
 }
 
 exports.confirmPayment = async (ref) => {

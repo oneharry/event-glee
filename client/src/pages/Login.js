@@ -84,7 +84,10 @@ export default function Login() {
               <button className="create-but" onClick={handleLogin}>
                 Log in
               </button>
-              <p>Don't have an account? <Link to="/register">Register</Link></p>
+              <div className="page-text">
+                <p>Don't have an account? <Link to="/register">Sign Up</Link></p>
+              </div>
+
             </div>
           </section>
         </form>

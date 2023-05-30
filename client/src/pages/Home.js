@@ -10,11 +10,7 @@ export default function Home() {
 const loading = '';
 const loading1 = '';
 const [allEvents, setEvents] = useState([])
-const {currentUser} = useAuth();
-
-useEffect(() => {
-  getAllEvents();
-}, [])
+const {currentUser, token, getUserJWT} = useAuth();
 
 const getAllEvents = async () => {
   try {
@@ -25,6 +21,17 @@ const getAllEvents = async () => {
     console.log("Error loading events")
   }
 }
+
+useEffect(() => {
+  console.log("Hone", currentUser, token)
+  if (currentUser) {
+     getUserJWT()
+  }
+  getAllEvents();
+  
+}, [getUserJWT, currentUser])
+
+
   
     return (
       <div>

@@ -11,8 +11,9 @@ const Navbar = () => {
   return (
     <nav>
       <div className="nav">
-        <Link to="/" className="anone">
-          <div className="logo">EventZea</div>
+        <Link to="/" className="logo">
+        EventZea
+          {/* <div className="logo"></div> */}
         </Link>
 
         <div className="nav-inner">
@@ -29,21 +30,19 @@ const Navbar = () => {
         </div>
 
         <div className="nav-inner">
-          <button className="nav-button"> Create event</button>
+          <Link to={'/event'} className="nav-link "> Create event</Link>
           {
-            !currentUser ? (<Link className="nav-button" to={'/login'}> Sign In</Link>) : (
+            !currentUser ? (<Link className="nav-link" to={'/login'}> Sign In</Link>) : (
               <div>
                 <button className="nav-button" onClick={logout}> Sign Out</button>
-                <button
-                  className="nav-button">
-                  Profile
-                </button>
-              </div>
+                
+              </div>)
+          }
+          {
+            currentUser ?  (<Link to={'/profile'} className="nav-link">Profile</Link>) : (
+              <Link className="nav-link" to={'/register'}> Sign Up</Link>
             )
           }
-          
-          
-          
         </div>
       </div>
     </nav>
