@@ -32,17 +32,18 @@ const Navbar = () => {
         <div className="nav-inner">
           <Link to={'/event'} className="nav-link "> Create event</Link>
           {
-            !currentUser ? (<Link className="nav-link" to={'/login'}> Sign In</Link>) : (
+            currentUser ?  (<Link to={'/profile'} className="nav-link">Profile</Link>) : (
+              <Link className="nav-link" to={'/login'}> Sign In</Link>
+            )
+          }
+          {
+            !currentUser ? (<Link className="nav-link" to={'/register'}> Sign Up</Link>) : (
               <div>
-                <button className="nav-button" onClick={logout}> Sign Out</button>
+                <button className="nav-button sign-out" onClick={logout}> Sign Out</button>
                 
               </div>)
           }
-          {
-            currentUser ?  (<Link to={'/profile'} className="nav-link">Profile</Link>) : (
-              <Link className="nav-link" to={'/register'}> Sign Up</Link>
-            )
-          }
+          
         </div>
       </div>
       <hr></hr>

@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <div className="footer">
+      <hr></hr>
       <div className="footer-inner">
-        <div> &copy; Harrison 2022</div>
+        <div> &copy; Harrison 2023</div>
         <div className="footer-inner2">
-          <div>About</div>
-          <div>Terms and Condition</div>
-          <Link className="anone1" to="/discover">
-            <div>Find Events</div>
-          </Link>
+          <Link className="footer-link">About</Link>
+          <Link className="footer-link">Terms and Condition</Link>
+          <Link className="footer-link" to="/discover">Find Events</Link>
         </div>
       </div>
     </div>

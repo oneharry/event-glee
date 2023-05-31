@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function EventCard({event}) {
 
-  const {name, category, start, description, venue, amount, image, eventId} = event;
+  const {name, organizer, start, description, venue, amount, image, eventId} = event;
   const {currentUser, getUserJWT} = useAuth()
 
 
@@ -32,27 +32,22 @@ export default function EventCard({event}) {
             src={image || "./images/image.png"}
           />
           <div className="inner-box">
-            <div className="home-text3">{name} of thr most high and club</div>
-            <div className="home-text4">
-              {description}
-            </div>
+            <div className="home-text3">{name}</div>
+            <div className="home-text4">{description}</div>
             
-            <div className="home-text5">
-              Date - {start}
-            </div>
-            <div className="home-text5">
-              Venue - <b>{venue}</b>
-            </div>
+            <div className="home-text5 date">{start}</div>
+            <div className="home-text5 venue"><strong>{venue}</strong></div>
             <div className="home-text5">
                { (amount > 0) ? `N${amount}` : "Free"}
             </div>
-            <div className="home-text6">
-              Organized by{" "}
-            </div>
-            
-            <button className="ticket-button" type="submit" onClick={handleTicket}>
-                Get Ticket
-              </button>
+            <div className="home-text6">{organizer}</div>
+            {
+              !currentUser ? null : (
+                <button className="ticket-button" type="submit" onClick={handleTicket}>
+                 Get Ticket
+                </button>
+              )
+            }
           </div>
         </div>
       );

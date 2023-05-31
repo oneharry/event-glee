@@ -1,5 +1,5 @@
 .footer {
-    background: #070a0e;
+    background-color: #026447;
   }
   
   .footer-inner {
@@ -8,17 +8,26 @@
     margin-right: auto;
     display: flex;
     justify-content: space-between;
-    padding: 50px;
+    padding: 20px;
     font-family: "League Spartan", sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 15px;
-    color: #00d395;
+    color: #def3ec;
   }
   
   .footer-inner2 {
     display: flex;
-    justify-content: space-between;
-    width: 300px;
+    justify-content: space-around;
+    width: 400px;
   }
+
+.footer-link {
+  text-decoration: none;
+  color: #def3ec;
+}
+
+.footer-link:hover {
+  color: white;
+}
   

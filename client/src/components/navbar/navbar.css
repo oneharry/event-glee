@@ -39,6 +39,10 @@
   width: 400px;
 }
 
+.sign-out {
+  color: red;
+}
+
 .nav-link {
   text-decoration: none;
   font-family: "League Spartan", sans-serif;
