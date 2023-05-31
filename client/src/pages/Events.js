@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import './css/Event.css';
-import { Header, Navbar, Sidebar } from "../components";
 import { useAuth } from "../context/context";
 import axios from 'axios';
 
@@ -57,6 +56,7 @@ export default function Event() {
 
       console.log(res.data);
       setLoading(false);
+      window.location.reload()
     } catch (error) {
       console.log("Failed to register", error)
     }
@@ -65,7 +65,6 @@ export default function Event() {
 
   return (
     <div>
-      <Navbar />
         <form>
           <section className="event-section1">
             <div className="event-text1">Create Event</div>

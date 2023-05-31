@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from "react";
 import {useNavigate} from 'react-router-dom'
 import './css/Profile.css'
-import { Navbar, TicketCard, EventCard } from "../components";
+import { TicketCard, EventCard } from "../components";
 import axios from 'axios';
 import { useAuth } from "../context/context";
 
@@ -60,7 +60,6 @@ export default function Profile() {
 
   return (
     <div>
-      <Navbar />
       <main>
         <div className="profile-list">
           <div

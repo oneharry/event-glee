@@ -1,12 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './navbar.css';
 import { useAuth } from '../../context/context';
 
 
 const Navbar = () => {
-  const {currentUser, logout} = useAuth();
+  const {currentUser, logout, handleSearch} = useAuth();
+  const navigate = useNavigate()
 
+  const handleInputClick = () => {
+    // Navigate to the search component
+    navigate('/discover');
+  };
 
   return (
     <nav>
@@ -23,7 +28,8 @@ const Navbar = () => {
                 className="search-input"
                 placeholder="Search event names, category"
                 // ref={searchRef}
-                // onChange={search}
+                onChange={handleSearch}
+                onClick={handleInputClick}
               />
             </div>
           </div>

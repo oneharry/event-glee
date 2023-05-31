@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/context";
 import './css/Event.css';
-import { Navbar} from "../components";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -56,7 +55,6 @@ export default function Register() {
 
   return (
     <div>
-      <Navbar />
         <form>
           <section className="event-section1">
             <div className="event-text1">Sign Up</div>

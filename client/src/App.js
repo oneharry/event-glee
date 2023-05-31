@@ -1,6 +1,7 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import {Home, Discover, Profile, Event, Login, Register} from './pages/index';
 import { AuthProvider} from "./context/context";
+import { Footer, Navbar } from "./components";
 
 
 
@@ -13,6 +14,7 @@ function App() {
     <div className="App">
       <AuthProvider>
         <BrowserRouter>
+            <Navbar />
             <Routes>
               <Route exact path="/" element={<Home />} />
               <Route exact path="/event" element={<Event />} />
@@ -21,6 +23,7 @@ function App() {
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/register" element={<Register />} />
             </Routes>
+            <Footer />
           </BrowserRouter>
       </AuthProvider>
     </div>

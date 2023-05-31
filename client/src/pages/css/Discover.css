@@ -1,5 +1,6 @@
-.main {
-  background-image: linear-gradient(to bottom right, rgb(5, 34, 5), black);
+.main-home {
+  min-height: 472px;
+  background-color: #f1f7f5;
 }
 
 .disc {
@@ -25,6 +26,37 @@
   }
   
   .disc-inner {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  .disc-text2 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    font-family: "League Spartan", sans-serif;
+    color: #01140f;
+    padding-top: 10px;
+    padding-bottom: 15px;
+  }
+
+  .disc-flow {
+    margin-left: auto;
+    margin-right: auto;
+    color: rgb(94, 19, 19);
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+
+  .disc-section1 {
+    background-color: #f1f7f5;
+  }
+  
+  .disc-section1-inner {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
