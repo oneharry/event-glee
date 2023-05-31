@@ -36,7 +36,7 @@ useEffect(() => {
     return (
       <div>
         {/* <Sidebar /> */}
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="event">
           <div className="home-text1">Buy event tickets using crypto</div>
   
