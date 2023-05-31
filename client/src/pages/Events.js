@@ -9,7 +9,7 @@ export default function Event() {
   const [eventName, setEventName] = useState('');
   const [venue, setVenue] = useState('');
   const [description, setDescription] = useState('')
-  const [eventImage, setEventImage] = useState('');
+  const [eventImage, setEventImage] = useState();
   const [category, setCategory] = useState('');
   const [ticketPrice, setTicketPrice] = useState('');
   const [numberOfTickets, setNumberOfTickets] = useState('');
@@ -31,32 +31,43 @@ export default function Event() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     // Perform form submission or other actions here
-    const data = {
-      "name": eventName,
-      "category": category,
-      "description": description,
-      "venue": category,
-      "price": ticketPrice,
-      "totalTickets": numberOfTickets,
-      "start": startDate,
-      "end": endDate,
-      "organizer": organizer,
-      "image": eventImage
-    }
+    const formData = new FormData()
+    formData.append("image", eventImage)
+    formData.append("name", eventName)
+      formData.append("category", category)
+      formData.append("description", description)
+      formData.append("venue", category)
+      formData.append("price", ticketPrice)
+      formData.append("totalTickets", numberOfTickets)
+      formData.append("start", startDate)
+      formData.append("end", endDate)
+      formData.append("organizer", organizer)
+    // const data = {
+    //   "name": eventName,
+    //   "category": category,
+    //   "description": description,
+    //   "venue": category,
+    //   "price": ticketPrice,
+    //   "totalTickets": numberOfTickets,
+    //   "start": startDate,
+    //   "end": endDate,
+    //   "organizer": organizer,
+    //   "image": formData
+    // }
 
     try {
       setLoading(true);
     
-      console.log(data)
-      const res = await axios.post(`http://localhost:5000/${currentUser.uid}/events`, data, {
+      console.log(formData)
+      const res = await axios.post(`http://localhost:5000/${currentUser.uid}/events`, formData, {
         headers: {
-          authorization: `Bearer ${token}`
+          authorization: `Bearer ${token}`,
+          "Content-Type": 'multipart/form-data'
         }
       });
 
       console.log(res.data);
       setLoading(false);
-      window.location.reload()
     } catch (error) {
       console.log("Failed to register", error)
     }
@@ -134,9 +145,6 @@ export default function Event() {
                     required
                     className="event-input"
                     type="file"
-                    accept="image/*"
-                    placeholder="choose face of your event"
-                    value={eventImage}
                     onChange={(e) => setEventImage(e.target.files[0])}
                   />
                 </div>

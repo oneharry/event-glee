@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 const {getEventsByUser, createEventByUser, getAllEvents, buyTicket, getUsersTicket, createUserProfile, verifyPay} = require('../controllers')
 const {authenticate} = require('../middleware/authenticate')
-const {upload} = require('../middleware/multer');
+const multer = require('multer');
 
 
-
+const upload = multer({ dest: 'uploads/' });
 //ROUTES
 router.post('/user', createUserProfile)
 
@@ -16,7 +16,7 @@ router.get('/:userId/ticket', authenticate, getUsersTicket)
 
 router.get('/:userId/events', authenticate, getEventsByUser)
 
-router.post('/:userId/events', authenticate, upload, createEventByUser)
+router.post('/:userId/events', authenticate, upload.single('image'), createEventByUser)
 
 router.get('/events', getAllEvents)
 

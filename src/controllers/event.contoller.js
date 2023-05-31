@@ -4,6 +4,7 @@ const dataUri = require('../middleware/multer')
 const { v4: uuidv4 } = require('uuid')
 
 
+
 //get events owned by user userId
 exports.getEventsByUser = async (req, res) => {
     const userId = req.params.userId
@@ -13,11 +14,10 @@ exports.getEventsByUser = async (req, res) => {
 
 //create an event
 exports.createEventByUser = async (req, res) => {
-    // console.log("FILE", req.files)
-    // return
-    // const result = await cloudinary.uploader.upload(req.file.path);
-    // console.log("CLoudinary", result)
+    console.log("FILE", req.file)
 
+    const result = await cloudinary.uploader.upload(req.file.path);
+    
     const data = req.body;
     const eventId = uuidv4();
     
@@ -31,12 +31,11 @@ exports.createEventByUser = async (req, res) => {
         'totalTickets': data.totalTickets,
         'start': data.start,
         'end': data.end,
-        'imageUrl': 'result.url',
+        'imageUrl': result.secure_url,
         'organizer': data.organizer,
         'userId': req.params.userId
     }
 
-    console.log("EVEN", form)
     try {
         const result = await createEvent(form);
         res.status(201).send(result);

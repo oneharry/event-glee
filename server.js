@@ -7,6 +7,8 @@ const bodyParser = require('body-parser')
 const homeRoute = require('./src/routes/app.route')
 const {getEvents, getUserEvents, createEvent, getUserEventTickets, createTicket, createUser} = require('./src/database')
 
+
+
 //MIDDLEWARES
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
