@@ -12,7 +12,7 @@ const Navbar = () => {
     <nav>
       <div className="nav">
         <Link to="/" className="logo">
-        EventZea
+        EventGlee
           {/* <div className="logo"></div> */}
         </Link>
 
@@ -45,6 +45,7 @@ const Navbar = () => {
           }
         </div>
       </div>
+      <hr></hr>
     </nav>
   );
 };

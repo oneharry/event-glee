@@ -28,15 +28,15 @@ export default function EventCard({event}) {
     return (
         <div className="home-box" key={eventId}>
           <img
-            className="evimg"
+            className="img"
             src={image || "./images/image.png"}
           />
           <div className="inner-box">
-            <div className="home-text3">{name}</div>
+            <div className="home-text3">{name} of thr most high and club</div>
             <div className="home-text4">
               {description}
             </div>
-            <div className="home-text5">{category}</div>
+            
             <div className="home-text5">
               Date - {start}
             </div>
@@ -44,30 +44,15 @@ export default function EventCard({event}) {
               Venue - <b>{venue}</b>
             </div>
             <div className="home-text5">
-              Organized by{" "}
-            </div>
-            <div className="home-text6">
                { (amount > 0) ? `N${amount}` : "Free"}
             </div>
-            <div
-              style={{ paddingTop: "10px" }}
-              className="home-text3"
-            >
-              Ticket Sold:
-              <span style={{ paddingLeft: "10px" }}>
-                {Number(
-                  String()
-                ) -
-                  Number(
-                    String(
-                      Number()
-                    )
-                  )}{" "}
-              </span>
-              <button className="create-but" type="submit" onClick={handleTicket}>
+            <div className="home-text6">
+              Organized by{" "}
+            </div>
+            
+            <button className="ticket-button" type="submit" onClick={handleTicket}>
                 Get Ticket
               </button>
-            </div>
           </div>
         </div>
       );

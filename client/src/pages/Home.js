@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './css/Home.css';
 import { Link } from 'react-router-dom';
-import {Header, Navbar, EventCard} from "../components";
+import {Header, Navbar, EventCard, Footer} from "../components";
 import { useAuth } from '../context/context';
 import axios from 'axios';
 
@@ -34,21 +34,24 @@ useEffect(() => {
 
   
     return (
-      <div>
+      <div className='home'>
         {/* <Sidebar /> */}
-        {/* <Navbar /> */}
+        <Navbar />
         <div className="event">
-          <div className="home-text1">Buy event tickets using crypto</div>
+          <div className="home-text1">
+            <h2>Discover and book events, concerts and more with EventGlee, the ultimate solution for securing tickets to the most exciting events in Nigeria</h2>
+            <p>Planning your event is just the beginning, we make your events discoverable and selling tickets easy to make your experience as smooth as possible</p>
+          </div>
   
-          <div>
+          <div className="home-buttons">
             <button className="home-discover-but">
-              <Link to="/discover" className="anone">
+              <Link  to="/discover" className="home-link">
                 Discover your next event
               </Link>
             </button>
   
             <button className="home-discover-but1">
-              <Link to="/event" className="anone">
+              <Link to="/event" className="home-link1">
                 Create your event
               </Link>
             </button>
@@ -73,6 +76,7 @@ useEffect(() => {
 
         <section className="home-section1">
             <div className="home-section1-inner">
+            <div className="home-text2">Upcoming events</div>
               <div className="home-flow">
                 {
                   (!allEvents && loading) ? <h1>Loading...</h1> : ((!allEvents && !loading) ? <h1>There are no upcoming event(s)</h1> :
@@ -97,6 +101,7 @@ useEffect(() => {
             <div className="loading-text">Trasaction in Progress</div>
           </div>
         ) : null}
+        <Footer />
       </div>
     );
   }
