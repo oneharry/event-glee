@@ -18,7 +18,7 @@ useEffect(() => {
   }
   getAllEvents();
   
-}, [getUserJWT, currentUser])
+}, [ currentUser ])
 
 
   

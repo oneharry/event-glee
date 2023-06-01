@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import './css/Event.css';
 import { useAuth } from "../context/context";
 import axios from 'axios';
+import LoadingButton from "../components/loadingspin/spinner";
+import Display from "../components/display/display";
 
 
 export default function Event() {
@@ -14,17 +16,20 @@ export default function Event() {
   const [ticketPrice, setTicketPrice] = useState('');
   const [numberOfTickets, setNumberOfTickets] = useState('');
   const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
   const [organizer, setOrganizer] = useState('');
   const [loading, setLoading] = useState(false);
+  const [errmsg, setErrMsg] = useState('');
+  const [status, setStatus] = useState('');
 
   const {token, getUserJWT, currentUser} = useAuth();
   const navigate = useNavigate();
+  const dateTime = new Date();
 
   useEffect(() => {
     if(!currentUser) {
       navigate('/login')
     }
+    
   }, [currentUser])
 
 
@@ -36,46 +41,64 @@ export default function Event() {
     formData.append("name", eventName)
       formData.append("category", category)
       formData.append("description", description)
-      formData.append("venue", category)
+      formData.append("venue", venue)
       formData.append("price", ticketPrice)
       formData.append("totalTickets", numberOfTickets)
       formData.append("start", startDate)
-      formData.append("end", endDate)
       formData.append("organizer", organizer)
-    // const data = {
-    //   "name": eventName,
-    //   "category": category,
-    //   "description": description,
-    //   "venue": category,
-    //   "price": ticketPrice,
-    //   "totalTickets": numberOfTickets,
-    //   "start": startDate,
-    //   "end": endDate,
-    //   "organizer": organizer,
-    //   "image": formData
-    // }
-
-    try {
-      setLoading(true);
+   
+      if(!eventName) {
+        setErrMsg("name field can't be empty")
+        setStatus('failure')
+      } else if(!category) {
+        setErrMsg("category field can't be empty")
+        setStatus('failure')
+      } else if(!description) {
+        setErrMsg("description field can't be empty")
+        setStatus('failure')
+      } else if(!venue) {
+        setErrMsg("venue field can't be empty")
+        setStatus('failure')
+      } else if (!ticketPrice) {
+        setErrMsg("price field can't be empty")
+        setStatus('failure')
+      } else if (!numberOfTickets) {
+        setErrMsg("number of tickets field can't be empty")
+        setStatus('failure')
+      } else if (!startDate || startDate <= dateTime ) {
+        setErrMsg("event date is not correct")
+        setStatus('failure')
+      } else if (!organizer) {
+        setErrMsg("organizer field can't be empty")
+        setStatus('failure')
+      } else if (!eventImage) {
+        setErrMsg("venue field can't be empty")
+        setStatus('failure')
+      } else {
+        try {
+          setLoading(true);
+        
+          console.log(formData)
+          const res = await axios.post(`http://localhost:5000/${currentUser.uid}/events`, formData, {
+            headers: {
+              authorization: `Bearer ${token}`,
+              "Content-Type": 'multipart/form-data'
+            }
+          });
     
-      console.log(formData)
-      const res = await axios.post(`http://localhost:5000/${currentUser.uid}/events`, formData, {
-        headers: {
-          authorization: `Bearer ${token}`,
-          "Content-Type": 'multipart/form-data'
+          console.log(res.data);
+          setErrMsg("event created successfully")
+          setStatus('success')
+          setLoading(false);
+        } catch (error) {
+          console.log("Failed to register", error)
         }
-      });
-
-      console.log(res.data);
-      setLoading(false);
-    } catch (error) {
-      console.log("Failed to register", error)
-    }
-
+      }
   };
 
   return (
     <div>
+      <Display message={errmsg} status={status} />
         <form>
           <section className="event-section1">
             <div className="event-text1">Create Event</div>
@@ -218,24 +241,14 @@ export default function Event() {
                 </div>
               </div>
 
-              <div className="input-box">
-                <div className="event-title">End date</div>
-                <div>
-                  <input
-                    required
-    
-                    type="datetime-local"
-                    className="event-input"
-                    placeholder="Which day  is the event ?"
-                    value={endDate}
-                    onChange={(e) => setEndDate(e.target.value)}
-                  />
-                </div>
-              </div>
-          
-              <button className="create-but" type="submit" onClick={handleSubmit}>
-                Create Event
-              </button>
+              {
+                loading ? <LoadingButton /> : (
+                  <button className="create-but" type="submit" onClick={handleSubmit}>
+                    Create Event
+                  </button>
+                )
+              }
+              
             </div>
           </section>
         </form>

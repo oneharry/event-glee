@@ -1,9 +1,12 @@
-import './card.css'
+import { useState } from 'react';
+import './card.css';
 import { useAuth } from '../../context/context';
 import axios from 'axios';
+import LoadingButton from '../loadingspin/spinner';
 
 export default function EventCard({event}) {
 
+  const [loading, setLoading] = useState(false);
   const {name, organizer, start, description, venue, amount, eventId, imageUrl} = event;
   const {currentUser, getUserJWT} = useAuth()
 
@@ -11,17 +14,20 @@ export default function EventCard({event}) {
   
 
   const handleTicket = async() => {
-    const token = await getUserJWT()
+    try {
+      const token = await getUserJWT()
+      const data = {
+        "eventId": eventId,
+        "amount": amount
+      }
+      const headers = {
+        authorization: `Bearer ${token}`
+      }
+      const res = await axios.post('http://localhost:5000/ticket', data, { headers} );
 
-    const data = {
-      "eventId": eventId,
-      "amount": amount
+    } catch (error) {
+      console.log("issues loading")
     }
-    const headers = {
-      authorization: `Bearer ${token}`
-    }
-    const res = await axios.post('http://localhost:5000/ticket', data, { headers} );
-    
 
   }
     
@@ -44,9 +50,11 @@ export default function EventCard({event}) {
             <div className="home-text6">{organizer}</div>
             {
               !currentUser ? null : (
-                <button className="ticket-button" type="submit" onClick={handleTicket}>
-                 Get Ticket
-                </button>
+                loading ? <LoadingButton /> : (
+                  <button className="ticket-button" type="submit" onClick={handleTicket}>
+                    Get Ticket
+                  </button>
+                )
               )
             }
           </div>
