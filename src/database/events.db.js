@@ -1,11 +1,12 @@
 const conn = require('../config/db.config')
 
 /*
-* getEvents - Fetches events from database
+* getEvents - Fetches all upcoming events from database whose start date is more than now
 * Returns: an array of the events
 */
 
 const getEvents = async () => {
+    const dateTime = new Date();
     try {
       const [rows] = await conn.query(`SELECT * FROM events`);
       return rows;

@@ -8,7 +8,7 @@ exports.getUserEventTickets = async (userId) => {
         SELECT * FROM tickets AS t
         INNER JOIN events AS e
         ON t.eventId = e.eventId
-        WHERE t.userId = ?
+        WHERE (t.userId = ?)
         `, [userId]);
         return rows;
     } catch (error) {

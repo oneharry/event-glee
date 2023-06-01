@@ -5,16 +5,30 @@ const { v4: uuidv4 } = require('uuid')
 
 
 
-//get events owned by user userId
+/*
+* getEventsByUser - Fetches events  from database 
+* req: http request object
+* res: http response object
+* Returns: an array of the events object response owned by userId to client
+*/
 exports.getEventsByUser = async (req, res) => {
     const userId = req.params.userId
-    const userEvents = await getUserEvents(userId)
-    res.send(userEvents)
+    try {
+        const userEvents = await getUserEvents(userId)
+        res.status(200).send({status: "success", data: userEvents})
+    } catch (error) {
+        console.log("Error getting events")
+        res.status(500).send({status: "failure", message: "error fetching data", error: error})
+    }
 }
 
-//create an event
+/*
+* createEventByUser - creates event using requesty body
+* req: http request objec
+* res: http response object
+* Returns: a response object to the client
+*/
 exports.createEventByUser = async (req, res) => {
-    console.log("FILE", req.file)
 
     const result = await cloudinary.uploader.upload(req.file.path);
     
@@ -40,16 +54,27 @@ exports.createEventByUser = async (req, res) => {
 
     try {
         const result = await createEvent(form);
-        res.status(201).send(result);
+        res.status(201).send({status: "success", message: "event created successfuly", data: result});
     } catch (error) {
         console.error('Error creating event:', error);
-        res.status(500).send('Error creating event');
+        res.status(500).send({status: "failure", message: "error creating event", error: error});
     }
 }
 
 
-//Returns all event
+/*
+* getAllEvents - Fetches events  from database 
+* req: http request object
+* res: http response object
+* Returns: an array of the events object response to client
+*/
 exports.getAllEvents =  async (req, res) => {
-    const events = await getEvents()
-    res.send(events);
+    try {
+        const events = await getEvents()
+        res.status(200).send({status: "success", data: events}); 
+    } catch (error) {
+        console.error('Error creating event:', error);
+        res.status(500).send({status: "failure", message: "error fetching data", error: error});
+    }
+    
 }
