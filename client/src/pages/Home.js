@@ -13,7 +13,6 @@ const {currentUser, token, getUserJWT, allEvents, getAllEvents} = useAuth();
 
 
 useEffect(() => {
-  console.log("Hone", currentUser, token)
   if (currentUser) {
      getUserJWT()
   }

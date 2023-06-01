@@ -36,6 +36,8 @@ exports.createEventByUser = async (req, res) => {
         'userId': req.params.userId
     }
 
+    console.log("EVEN", form)
+
     try {
         const result = await createEvent(form);
         res.status(201).send(result);

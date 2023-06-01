@@ -1,16 +1,25 @@
 const conn = require('../config/db.config')
 
-//get all events in db
+/*
+* getEvents - Fetches events from database
+* Returns: an array of the events
+*/
+
 const getEvents = async () => {
     try {
       const [rows] = await conn.query(`SELECT * FROM events`);
       return rows;
     } catch (error) {
-      console.error('Error retrieving events:', error);
+      return (error);
     }
 };
 
-  //get users events
+
+/*
+* getUsersEvents - Fetches events  from database 
+* userId: userId of the events creator
+* Returns: an array of the event
+*/
 const getUserEvents = async (userId) => {
     try {
         const [rows] = await conn.query(`
@@ -23,7 +32,12 @@ const getUserEvents = async (userId) => {
       }    
 }
 
-//get event by eventId
+
+/*
+* getEventById - Fetches event by eventId from database 
+* eventId: Id of the event
+* Returns: an object of the event
+*/
 const getEventById = async (eventId) => {
     try {
         const [rows] = await conn.query(`
@@ -38,10 +52,17 @@ const getEventById = async (eventId) => {
       }    
 }
 
-// create event
+
+
+/*
+* createEvent - create an event
+* ev: an object of the insert values
+* Returns: an aarya of the events
+*/
 const createEvent = async (ev) => {
     try {
       const {name, category, venue, description, amount, totalTickets, start, end, imageUrl, userId, eventId, organizer} = ev;
+
         const [result] = await conn.query(`
         INSERT INTO events
         (name, category, venue, description, amount, totalTickets, start, end, imageUrl, userId, eventId, organizer)

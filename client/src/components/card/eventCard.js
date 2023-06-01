@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function EventCard({event}) {
 
-  const {name, organizer, start, description, venue, amount, image, eventId} = event;
+  const {name, organizer, start, description, venue, amount, eventId, imageUrl} = event;
   const {currentUser, getUserJWT} = useAuth()
 
 
@@ -29,7 +29,8 @@ export default function EventCard({event}) {
         <div className="home-box" key={eventId}>
           <img
             className="img"
-            src={image || "./images/image.png"}
+            src={imageUrl}
+            alt={name}
           />
           <div className="inner-box">
             <div className="home-text3">{name}</div>

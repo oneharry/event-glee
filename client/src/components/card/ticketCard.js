@@ -2,12 +2,13 @@ import { useState } from 'react';
 import './card.css'
 
 export default function TicketCard({ticket}) {
-    const {name, organizer, start, description, venue, price, image} = ticket;
+    const {name, organizer, start, description, venue, price, imageUrl} = ticket;
     return (
         <div className="home-box">
           <img
             className="img"
-            src={image || "./images/image.png"}
+            src={imageUrl}
+            alt={name}
           />
 
           <div className="inner-box ticket-box">
