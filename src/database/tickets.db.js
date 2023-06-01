@@ -1,7 +1,11 @@
 const conn = require('../config/db.config')
 
 
-//get eventsttickets by userId
+/*
+* getUserEventTickets - get tickets by a user userid
+* userId: id of the user
+* Returns: an array of tickets 
+*/
 exports.getUserEventTickets = async (userId) => {
     try {
         const [rows] = await conn.query(`
@@ -16,7 +20,12 @@ exports.getUserEventTickets = async (userId) => {
     }    
 }
 
-// get ticket by ticketid
+
+/*
+* getTicketById - get tickets by ticketId
+* ticketId: id of the a ticket
+* Returns: a ticket object 
+*/
 const getTicketById = async (ticketId) => {
     try {
         const [rows] = await conn.query(`
@@ -30,7 +39,11 @@ const getTicketById = async (ticketId) => {
 }
 
 
-// create tickets
+/*
+* createTicket - add ticket to DB
+* ticket: an object of the ticket
+* Returns: 
+*/
 exports.createTicket = async (ticket) => {
     try {
         const [result] = await conn.query(`
@@ -41,5 +54,6 @@ exports.createTicket = async (ticket) => {
         // return getTicketById(ticket.ticketId);
       } catch (error) {
         console.error('Error retrieving events:', error);
+        return (error)
       }     
 }

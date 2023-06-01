@@ -3,9 +3,13 @@ const fs = require('fs');
 const doc = new PDFDocument({size: 'A4'})
 
 
+/*
+* createTicketPDF - create ticket
+* userId: id of the user
+* Returns: a doc
+*/
 exports.createTicketPDF = async (data, ticketId) => {
-    const {name, start, end, amount} = data
-    const imgurl = './student2.jpg'
+    const {name, imgurl, start, end, amount} = data
 
     const dateCompare = (start, end) => {
         const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
@@ -103,5 +107,6 @@ exports.createTicketPDF = async (data, ticketId) => {
         return doc;
     } catch (error) {
         console.log("Error writing pdf", error)
+        return (error)
     }
 }

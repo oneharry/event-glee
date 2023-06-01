@@ -1,6 +1,5 @@
 const {getEvents, getUserEvents, createEvent} = require('../database')
 const cloudinary = require('../config/cloudinary.config')
-const dataUri = require('../middleware/multer')
 const { v4: uuidv4 } = require('uuid')
 
 

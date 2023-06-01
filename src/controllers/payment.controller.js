@@ -1,8 +1,6 @@
 const {initializePayment, verifyPayment} = require('../utils/payment.utils')
-const {makePayment} = require('../services/paystack.service')
 const {createTicket, getEventById} = require('../database')
 const {sendMail} = require('../services')
-
 
 
 /*
@@ -44,21 +42,28 @@ const getTicket = async (eventId) => {
     }
 }
 
+/*
+* buyTicket - buys ticket 
+* req: http request object
+* res: http response object
+* Returns: a success or failure message to clien
+*/
 exports.buyTicket = async (req, res) => {
-    const headers = req.headers;
-  console.log(req.body);
+
     try {
         if (req.body.amount === 0) {
+            //if ticket price is free
             const {eventId} = req.body;
             getTicket(eventId)
         } else {
+            //if ticket price is not free
             //initialize payment
             initializePayment(req.body, (err, body) => {
                 if(err) {
                     console.log(err)
-                    res.status(500).json({status: "failure", message: 'error initializing payment', error: err });
+                    res.status(500).send({status: "failure", message: 'error initializing payment', error: err });
                 } else {
-                    //redirect client to paystack payment url
+                    //redirect client to paystack payment url 
                     const response = JSON.parse(body);
                     console.log("create payment body", response)
                     res.redirect(response.data.authorization_url)
@@ -68,11 +73,17 @@ exports.buyTicket = async (req, res) => {
 
     } catch (error) {
         console.log("error initializing payment")
-        res.status(500).json({status: "failure", message: 'error initializing payment', error: error });
+        res.status(500).send({status: "failure", message: 'error initializing payment', error: error });
     }
 }
 
 
+/*
+* verifyPay - confirms payment from paystack using a reference
+* req: http request object
+* res: http response object
+* Returns: a success or failure message to client
+*/
 exports.verifyPay = (req, res) => {
     const ref = req.query.reference;
   

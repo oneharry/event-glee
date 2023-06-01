@@ -1,9 +1,11 @@
 const request = require('request')
 require('dotenv').config();
 
-
-const MySecretKey = `Bearer ${process.env.PAYSTACK_SECRET_KEY}`;
 //sk_test_xxxx to be replaced by your own secret key
+const MySecretKey = `Bearer ${process.env.PAYSTACK_SECRET_KEY}`;
+
+
+//initialize payment API
 exports.initializePayment = (form, mycallback) => {
     const option = {
         url : 'https://api.paystack.co/transaction/initialize',
@@ -21,6 +23,7 @@ exports.initializePayment = (form, mycallback) => {
 }
 
 
+//verify payment API
 exports.verifyPayment = (ref, mycallback) => {
     const option = {
         url : 'https://api.paystack.co/transaction/verify/' + encodeURIComponent(ref),

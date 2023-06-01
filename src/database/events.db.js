@@ -72,7 +72,8 @@ const createEvent = async (ev) => {
         console.log("Event added to DB")
       } catch (error) {
         console.error('Error adding event to DB:', error);
-      }     
+        return (error);
+      }
 }
 
 module.exports = {getEventById, getEvents, createEvent, getUserEvents};

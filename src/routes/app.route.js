@@ -6,6 +6,8 @@ const multer = require('multer');
 
 
 const upload = multer({ dest: 'uploads/' });
+
+
 //ROUTES
 router.post('/user', createUserProfile)
 

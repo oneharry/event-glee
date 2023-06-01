@@ -50,8 +50,9 @@ export const AuthProvider = ({ children }) => {
       const getAllEvents = async () => {
         try {
           const res = await axios.get('http://localhost:5000/events')
+          console.log("A", res)
           setEvents(res.data)
-          console.log(allEvents)
+          console.log("B", allEvents)
         } catch (error) {
           console.log("Error loading events")
         }
