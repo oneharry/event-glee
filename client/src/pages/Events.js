@@ -240,15 +240,14 @@ export default function Event() {
                   />
                 </div>
               </div>
+              <button 
+              className="create-but"
+              disabled={loading}
+              style={loading ? {cursor: 'progress'} : null}
+              onClick={handleSubmit}>
+                { loading ? (<LoadingButton />) : "Create Event"}
+              </button>
 
-              {
-                loading ? <LoadingButton /> : (
-                  <button className="create-but" type="submit" onClick={handleSubmit}>
-                    Create Event
-                  </button>
-                )
-              }
-              
             </div>
           </section>
         </form>

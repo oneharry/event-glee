@@ -125,7 +125,11 @@ export default function Register() {
                   />
                 </div>
               </div>
-              <button className="create-but" onClick={handleRegister}>
+              <button 
+              className="create-but"
+              disabled={loading}
+              style={loading ? {cursor: 'progress'} : null}
+              onClick={handleRegister}>
                 { loading ? (<LoadingButton />) : "Register"}
               </button>
               <div className="page-text">
