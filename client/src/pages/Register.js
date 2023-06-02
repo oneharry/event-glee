@@ -57,7 +57,6 @@ export default function Register() {
             "email": email,
             "userId": res.user.uid
           }
-          console.log(data)
           await axios.post('http://localhost:5000/user', data);
   
         setLoading(false);
