@@ -66,6 +66,7 @@
   .input-box {
     margin-bottom: 30px;
   }
+
   
   .create-but {
     width: 234px;
@@ -80,6 +81,11 @@
     display: block;
     margin-left: auto;
     cursor: pointer;
+    position: relative;
+  }
+
+  .event-link {
+    color: white;
   }
   
   .loading-card {

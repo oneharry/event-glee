@@ -125,17 +125,11 @@ export default function Register() {
                   />
                 </div>
               </div>
-
-              {
-                loading ? <LoadingButton /> : (
-                  <button className="create-but" onClick={handleRegister}>
-                Sign Up
+              <button className="create-but" onClick={handleRegister}>
+                { loading ? (<LoadingButton />) : "Register"}
               </button>
-                )
-              }
-              
               <div className="page-text">
-                <p>Have an account? <Link to="/login">Sign In</Link></p>
+                <p>Have an account? <Link className="event-link" to="/login">Sign In</Link></p>
               </div>
             </div>
           </section>

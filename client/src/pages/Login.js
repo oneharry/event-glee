@@ -12,7 +12,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const {login, currentUser} = useAuth();
   const [errmsg, setErrMsg] = useState('');
   const [status, setStatus] = useState('');
@@ -91,15 +91,14 @@ export default function Login() {
                   />
                 </div>
               </div>
-              {
-                loading ? <LoadingButton /> : (
-                  <button className="create-but" onClick={handleLogin}>
-                    Log in
-                  </button>
-                )
-              }
+              <button className="create-but"
+                  disabled={loading}
+                  style={loading ? {cursor: 'progress'} : null}
+                  onClick={handleLogin}
+                  > { loading ? (<LoadingButton />) : "Log In"}
+                </button>
               <div className="page-text">
-                <p>Don't have an account? <Link to="/register">Sign Up</Link></p>
+                <p>Don't have an account? <Link className="event-link" to="/register">Sign Up</Link></p>
               </div>
 
             </div>
