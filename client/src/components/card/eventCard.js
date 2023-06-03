@@ -10,9 +10,22 @@ export default function EventCard({event}) {
   const {name, organizer, start, description, venue, amount, eventId, imageUrl} = event;
   const {currentUser, getUserJWT} = useAuth()
 
+  const date = (dateString) => {
+    const dayArr = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
+    const monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
+    const dateObj = new Date(dateString);
+    const year = dateObj.getFullYear();
+    const month = monthArr[dateObj.getMonth()];
+    const day = dayArr[dateObj.getDay()]
+    const dayOfMonth = dateObj.getDate();
+    const hours = dateObj.getHours();
+    const minutes = dateObj.getMinutes();
+
+    const fmtDate = `${day}, ${month} ${dayOfMonth} ${year}  ${hours}:${minutes}`
+    return fmtDate;
+}
   
-
   const handleTicket = async() => {
     try {
       const token = await getUserJWT()
@@ -42,7 +55,7 @@ export default function EventCard({event}) {
             <div className="home-text3">{name}</div>
             <div className="home-text4">{description}</div>
             
-            <div className="home-text5 date">{start}</div>
+            <div className="home-text5 date">{date(start)}</div>
             <div className="home-text5 venue"><strong>{venue}</strong></div>
             <div className="home-text5">
                { (amount > 0) ? `N${amount}` : "Free"}

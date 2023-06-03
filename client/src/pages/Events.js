@@ -13,8 +13,8 @@ export default function Event() {
   const [description, setDescription] = useState('')
   const [eventImage, setEventImage] = useState();
   const [category, setCategory] = useState('');
-  const [ticketPrice, setTicketPrice] = useState();
-  const [numberOfTickets, setNumberOfTickets] = useState(0);
+  const [ticketPrice, setTicketPrice] = useState(0);
+  const [numberOfTickets, setNumberOfTickets] = useState();
   const [startDate, setStartDate] = useState();
   const [organizer, setOrganizer] = useState('');
   const [loading, setLoading] = useState(false);
@@ -39,7 +39,7 @@ export default function Event() {
     setDescription("")
     setEventImage("")
     setCategory("")
-    setTicketPrice()
+    setTicketPrice(0)
     setNumberOfTickets()
     setStartDate("")
     setOrganizer("")
@@ -71,7 +71,7 @@ export default function Event() {
         setDisplayMsg("description field can't be empty", "failure")
       } else if(!venue) {
         setDisplayMsg("venue field can't be empty", "failure")
-      } else if (typeof ticketPrice !== 'number') {
+      } else if (Number.isNaN(ticketPrice) || ticketPrice < 0) {
         setDisplayMsg("price must be a number", "failure")
       } else if (Number.isNaN(numberOfTickets) || numberOfTickets < 1 ) {
         setDisplayMsg("number must be greater that 0", "failure")
@@ -97,6 +97,7 @@ export default function Event() {
           setDisplayMsg("event created successfully", "success")
           setLoading(false);
           resetForm();
+          window.scrollTo(0, 0);
         } catch (error) {
           console.log("Failed to register", error)
           setDisplayMsg("error creating event, try again!", "failure")
@@ -171,18 +172,6 @@ export default function Event() {
               </div>
 
               <div className="input-box">
-                <div className="event-title">Select Event Image</div>
-                <div>
-                  <input
-                    required
-                    className="event-input"
-                    type="file"
-                    onChange={(e) => setEventImage(e.target.files[0])}
-                  />
-                </div>
-              </div>
-
-              <div className="input-box">
                 <div className="event-title">Category</div>
                 <div>
                   <select className="event-input"
@@ -213,7 +202,7 @@ export default function Event() {
                   <input
                     
                     className="event-input"
-                    placeholder="enter 0 if free"
+                    placeholder="eg 1000"
                     value={ticketPrice}
                     onChange={(e) => setTicketPrice(e.target.value)}
                   />
@@ -246,6 +235,18 @@ export default function Event() {
                     placeholder="Which day is the event ?"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="input-box">
+                <div className="event-title">Select Event Image</div>
+                <div>
+                  <input
+                    required
+                    className="event-input"
+                    type="file"
+                    onChange={(e) => setEventImage(e.target.files[0])}
                   />
                 </div>
               </div>
