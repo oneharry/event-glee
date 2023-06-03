@@ -62,13 +62,13 @@ const getEventById = async (eventId) => {
 */
 const createEvent = async (ev) => {
     try {
-      const {name, category, venue, description, amount, totalTickets, start, end, imageUrl, userId, eventId, organizer} = ev;
+      const {name, category, venue, description, amount, totalTickets, start, imageUrl, userId, eventId, organizer} = ev;
 
         const [result] = await conn.query(`
         INSERT INTO events
-        (name, category, venue, description, amount, totalTickets, start, end, imageUrl, userId, eventId, organizer)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `, [name, category, venue, description, amount, totalTickets, start, end, imageUrl, userId, eventId, organizer]);
+        (name, category, venue, description, amount, totalTickets, start, imageUrl, userId, eventId, organizer)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `, [name, category, venue, description, amount, totalTickets, start, imageUrl, userId, eventId, organizer]);
         console.log("Event added to DB")
       } catch (error) {
         console.error('Error adding event to DB:', error);

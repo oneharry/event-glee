@@ -7,9 +7,7 @@ import { useAuth } from '../context/context';
 
 
 export default function Home() {
-const loading = '';
-const loading1 = '';
-const {currentUser, token, getUserJWT, allEvents, getAllEvents} = useAuth();
+const {currentUser, token, loading, getUserJWT, allEvents, getAllEvents} = useAuth();
 
 
 useEffect(() => {
@@ -20,6 +18,7 @@ useEffect(() => {
   
 }, [ currentUser ])
 
+console.log(allEvents)
 
   
     return (
@@ -66,7 +65,7 @@ useEffect(() => {
             <div className="home-text2">Upcoming events</div>
               <div className="home-flow">
                 {
-                  (!allEvents && loading) ? <h1>Loading...</h1> : ((!allEvents && !loading) ? <h1>There are no upcoming event(s)</h1> :
+                (allEvents.length === 0 && loading) ? <h1>Loading...</h1> : ((allEvents.length === 0 && !loading) ? <h1>There are no upcoming event(s)</h1> :
                     (
                     allEvents.map((item) => {
                       return <EventCard event={item} />
@@ -77,17 +76,6 @@ useEffect(() => {
             </div>
         </section>
         {/* { <Footer /> } */}
-        {loading === true ? (
-          <div className="loading-card">
-            <div>
-              <div className="spinner">
-                <div className="double-bounce1"></div>
-                <div className="double-bounce2"></div>
-              </div>
-            </div>
-            <div className="loading-text">Trasaction in Progress</div>
-          </div>
-        ) : null}
       </div>
     );
   }

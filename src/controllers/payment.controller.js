@@ -55,13 +55,14 @@ exports.buyTicket = async (req, res) => {
             //if ticket price is free
             const {eventId} = req.body;
             getTicket(eventId)
+            res.status(200).json({status: "success"})
         } else {
             //if ticket price is not free
             //initialize payment
             initializePayment(req.body, (err, body) => {
                 if(err) {
                     console.log(err)
-                    res.status(500).send({status: "failure", message: 'error initializing payment', error: err });
+                    res.status(500).json({status: "failure", message: 'error initializing payment' });
                 } else {
                     //redirect client to paystack payment url 
                     const response = JSON.parse(body);
@@ -73,7 +74,7 @@ exports.buyTicket = async (req, res) => {
 
     } catch (error) {
         console.log("error initializing payment")
-        res.status(500).send({status: "failure", message: 'error initializing payment', error: error });
+        res.status(500).json({status: "failure", message: 'error initializing payment', error: error });
     }
 }
 
@@ -92,18 +93,20 @@ exports.verifyPay = (req, res) => {
             verifyPayment(ref, (err, body) => {
                 if (err) {
                     console.log("error confirming paystack", err);
-                    res.status(500).send({status: "failure", message: 'error comfirming payment', error: err });
+                    res.status(500).json({status: "failure", message: 'error confirming paystack payment' });
                 } else {
                     const response = JSON.parse(body);
                     const {eventId} = req.body;
                     getTicket(eventId, userId)
-                    res.status(200).send({status: "success"})
+                    res.status(200).json({status: "success"})
                 }
             });
         } catch (err) {
-            res.status(500).send({status: "failure", message: 'error comfirming payment', error: err });
+            console.log(err)
+            res.status(500).json({status: "failure", message: 'error comfirming payment', error: err });
         }
     } else {
-      res.status(500).send({ status: "failure", message: 'invalid payment reference' });
+        console.log(err)
+      res.status(500).json({ status: "failure", message: 'invalid payment reference' });
     }
   }

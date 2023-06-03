@@ -18,10 +18,9 @@ export default function Event() {
   const [startDate, setStartDate] = useState('');
   const [organizer, setOrganizer] = useState('');
   const [loading, setLoading] = useState(false);
-  const [errmsg, setErrMsg] = useState('');
-  const [status, setStatus] = useState('');
 
-  const {token, getUserJWT, currentUser} = useAuth();
+
+  const {token, getUserJWT, currentUser, setDisplayMsg} = useAuth();
   const navigate = useNavigate();
   const dateTime = new Date();
 
@@ -48,32 +47,23 @@ export default function Event() {
       formData.append("organizer", organizer)
    
       if(!eventName) {
-        setErrMsg("name field can't be empty")
-        setStatus('failure')
+        setDisplayMsg("name field can't be empty", "failure")
       } else if(!category) {
-        setErrMsg("category field can't be empty")
-        setStatus('failure')
+        setDisplayMsg("category field can't be empty", "failure")
       } else if(!description) {
-        setErrMsg("description field can't be empty")
-        setStatus('failure')
+        setDisplayMsg("description field can't be empty", "failure")
       } else if(!venue) {
-        setErrMsg("venue field can't be empty")
-        setStatus('failure')
+        setDisplayMsg("venue field can't be empty", "failure")
       } else if (!ticketPrice) {
-        setErrMsg("price field can't be empty")
-        setStatus('failure')
+        setDisplayMsg("price field can't be empty", "failure")
       } else if (!numberOfTickets) {
-        setErrMsg("number of tickets field can't be empty")
-        setStatus('failure')
+        setDisplayMsg("number of tickets field can't be empty", "failure")
       } else if (!startDate || startDate <= dateTime ) {
-        setErrMsg("event date is not correct")
-        setStatus('failure')
+        setDisplayMsg("event date is not correct", "failure")
       } else if (!organizer) {
-        setErrMsg("organizer field can't be empty")
-        setStatus('failure')
+        setDisplayMsg("organizer field can't be empty", "failure")
       } else if (!eventImage) {
-        setErrMsg("venue field can't be empty")
-        setStatus('failure')
+        setDisplayMsg("venue field can't be empty", "failure")
       } else {
         try {
           setLoading(true);
@@ -87,18 +77,19 @@ export default function Event() {
           });
     
           console.log(res.data);
-          setErrMsg("event created successfully")
-          setStatus('success')
+          setDisplayMsg("event created successfully", "success")
           setLoading(false);
         } catch (error) {
           console.log("Failed to register", error)
+          setDisplayMsg("error creating event, try again!", "failure")
+          setLoading(false)
         }
       }
   };
 
   return (
     <div>
-      <Display message={errmsg} status={status} />
+      <Display />
         <form>
           <section className="event-section1">
             <div className="event-text1">Create Event</div>
@@ -247,22 +238,9 @@ export default function Event() {
               onClick={handleSubmit}>
                 { loading ? (<LoadingButton />) : "Create Event"}
               </button>
-
             </div>
           </section>
         </form>
-      {/* Loading state */}
-      {loading && (
-        <div className="loading-card">
-          <div>
-            <div className="spinner">
-              <div className="double-bounce1"></div>
-              <div className="double-bounce2"></div>
-            </div>
-          </div>
-          <div className="loading-text">Transaction in Progress</div>
-        </div>
-      )}
     </div>
   );
 }

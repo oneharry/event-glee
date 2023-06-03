@@ -12,10 +12,9 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(true);
-  const {login, currentUser} = useAuth();
-  const [errmsg, setErrMsg] = useState('');
-  const [status, setStatus] = useState('');
+  const [loading, setLoading] = useState(false);
+  const {login, currentUser, setDisplayMsg, setErrMsg, errmsg, status, setStatus} = useAuth();
+  
 
   useEffect(() => {
     if (currentUser) {
@@ -30,20 +29,24 @@ export default function Login() {
 
   const handleLogin = async(e) => {
     e.preventDefault();
-    // Perform form submission or other actions here
-    if(!password || password.length < 6 ) {
-      setErrMsg("password must be at least 6 characters long")
-      setStatus('failure')
-    } else if (!email || !isValidEmail(email)) {
-      setErrMsg("incorrect email address")
-      setStatus('failure');
+    // Perform form submission or other actions 
+    if (email === '' || !isValidEmail(email)) {
+      console.log("HI")
+      setDisplayMsg("incorrect email address", "failure");
+    } else if(!password || password.length < 6 ) {
+      console.log("HO")
+      setDisplayMsg("password must be at least 6 characters long", "failure");
     } else {
       try {
+        console.log("Worked")
         setLoading(true);
         await login(email, password);
         setLoading(false)
       } catch (error) {
+        setDisplayMsg("error logging in, try again!", "failure")
         console.log("Login error", error)
+        setLoading(false)
+        
       }
     };
     }
@@ -51,7 +54,7 @@ export default function Login() {
 
   return (
     <div>
-      <Display message={errmsg} status={status} />
+      {errmsg !== '' && <Display /> }
         <form>
           <section className="event-section1">
             <div className="event-text1">Sign In</div>
@@ -104,17 +107,6 @@ export default function Login() {
             </div>
           </section>
         </form>
-      {/* {loading === true ? (
-        <div className="loading-card">
-          <div>
-            <div className="spinner">
-              <div className="double-bounce1"></div>
-              <div className="double-bounce2"></div>
-            </div>
-          </div>
-          <div className="loading-text">Trasaction in Progress</div>
-        </div>
-      ) : null} */}
     </div>
   );
 }

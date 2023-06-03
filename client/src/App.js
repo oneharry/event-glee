@@ -1,7 +1,7 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import {Home, Discover, Profile, Event, Login, Register} from './pages/index';
 import { AuthProvider} from "./context/context";
-import { Footer, Navbar } from "./components";
+import { Display, Footer, Navbar } from "./components";
 
 
 

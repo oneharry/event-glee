@@ -9,8 +9,8 @@ export default function Profile() {
 
   const [profileState, setProfile] = useState("event");
   // const [priceState, setPriceState] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [loading1, setLoading1] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [loading1, setLoading1] = useState(false);
   const [myEvents, setMyEvents] = useState([])
   const [myTickets, setMyTickets] = useState([])
   
@@ -25,7 +25,7 @@ export default function Profile() {
           authorization: `Bearer ${token}`
         }
       });
-      setMyEvents(res.data);
+      setMyEvents(res.data.data);
       setLoading(false);
     } catch (error) {
       console.log("Error loading events")
@@ -40,7 +40,7 @@ export default function Profile() {
           authorization: `Bearer ${token}`
         }
       });
-      setMyTickets(res.data);
+      setMyTickets(res.data.data);
       setLoading1(false);
     } catch (error) {
       console.log("Error", error)
@@ -124,17 +124,6 @@ export default function Profile() {
           </section>
         ) : null}
       </main>
-      {/* {loading === true ? (
-        <div className="loading-card">
-          <div>
-            <div className="spinner">
-              <div className="double-bounce1"></div>
-              <div className="double-bounce2"></div>
-            </div>
-          </div>
-          <div className="loading-text">Trasaction in Progress</div>
-        </div>
-      ) : null} */}
     </div>
   );
 }

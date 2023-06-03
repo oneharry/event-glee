@@ -12,11 +12,13 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [token, setToken] = useState();
     const [allEvents, setEvents] = useState([])
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredEvents, setFilteredItems] = useState([]);
+    const [errmsg, setErrMsg] = useState('');
+    const [status, setStatus] = useState('');
     
   
     useEffect(() => {
@@ -49,8 +51,10 @@ export const AuthProvider = ({ children }) => {
 
       const getAllEvents = async () => {
         try {
+          setLoading(true)
           const res = await axios.get('http://localhost:5000/events')
           setEvents(res.data.data)
+          setLoading(false)
         } catch (error) {
           console.log("Error loading events")
         }
@@ -68,8 +72,15 @@ export const AuthProvider = ({ children }) => {
         setFilteredItems(filtered);
       };
 
+
+      const setDisplayMsg = (msg, status) => {
+        setErrMsg(msg);
+        setStatus(status)
+      }
+
       const value = {
         currentUser,
+        loading,
         login,
         register,
         logout,
@@ -79,12 +90,15 @@ export const AuthProvider = ({ children }) => {
         getAllEvents,
         handleSearch,
         filteredEvents,
-        searchQuery
+        searchQuery,
+        setDisplayMsg,
+        errmsg,
+        status
       }
   
     return (
       <AuthContext.Provider value={ value } >
-        {!loading && children}
+        { children}
       </AuthContext.Provider>
     );
   };

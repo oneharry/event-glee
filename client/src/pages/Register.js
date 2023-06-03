@@ -15,10 +15,8 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('');
-  const [loading, setLoading] = useState('false');
-  const {register, currentUser} = useAuth();
-  const [errmsg, setErrMsg] = useState('');
-  const [status, setStatus] = useState('');
+  const [loading, setLoading] = useState(false);
+  const {register, currentUser, errmsg, setDisplayMsg} = useAuth();
 
 
   useEffect(() => {
@@ -39,14 +37,11 @@ export default function Register() {
     console.log(email, password, password2);
     
     if(password !== password2) {
-      setErrMsg("your password doesn't match")
-      setStatus('failure')
+      setDisplayMsg("your password doesn't match", "failure")
     } else if(!password || !password2 || password.length < 6 || password2.length < 6) {
-      setErrMsg("password must be at least 6 characters long")
-      setStatus('failure')
+      setDisplayMsg("password must be at least 6 characters long", "failure")
     } else if (!email || !isValidEmail(email)) {
-      setErrMsg("incorrect email address")
-      setStatus('failure');
+      setDisplayMsg("incorrect email address", "failure")
     } else {
       try {
         setLoading(true);
@@ -60,9 +55,12 @@ export default function Register() {
           await axios.post('http://localhost:5000/user', data);
   
         setLoading(false);
+        setDisplayMsg("successfully registered", "success")
         navigate('/')
       } catch (error) {
         console.log("Failed to register", error)
+        setDisplayMsg("error encountered, try again!", "failure")
+        setLoading(false)
       }
     }
 
@@ -70,7 +68,7 @@ export default function Register() {
 
   return (
     <div>
-      <Display message={errmsg} status={status} />
+      {errmsg !== '' && <Display /> }
         <form>
           <section className="event-section1">
             <div className="event-text1">Sign Up</div>
@@ -138,17 +136,6 @@ export default function Register() {
             </div>
           </section>
         </form>
-      {/* {loading === true ? (
-        <div className="loading-card">
-          <div>
-            <div className="spinner">
-              <div className="double-bounce1"></div>
-              <div className="double-bounce2"></div>
-            </div>
-          </div>
-          <div className="loading-text">Trasaction in Progress</div>
-        </div>
-      ) : null} */}
     </div>
   );
 }

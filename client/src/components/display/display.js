@@ -1,25 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './display.css';
+import { useAuth } from "../../context/context";
 
 
-export default function Display({message, status}) {
+export default function Display() {
 
   const [isVisible, setIsVisible] = useState(true);
 
+  const { errmsg, setErrMsg, status, setStatus, setDisplayMsg } = useAuth();
+
+  useEffect(() => {
+    
+  }, [errmsg, status, isVisible]);
+
   const handleClose = () => {
     setIsVisible(false);
+    setDisplayMsg("", "")
   };
 
-  return (
-    <div>
+  setTimeout(() => {
+    handleClose()
+  }, 5000)
+
+  return (errmsg !== '') && (
+    <>
       {isVisible && (
-        <div style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
-          <span>{message}</span>
-          <button onClick={handleClose} style={{ marginLeft: '10px' }}>
-            x
-          </button>
+        <div className="display" style={ (status === 'failure') ? {backgroundColor: 'red'}: null} >
+          <div className="disp-message">
+            <p>{errmsg}</p>
+            <button onClick={handleClose} style={{ marginLeft: '10px' }}>
+              x
+            </button>
+          </div>
         </div>
       )}
-    </div>
+    </>
   );
 };

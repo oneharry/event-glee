@@ -14,10 +14,10 @@ exports.getEventsByUser = async (req, res) => {
     const userId = req.params.userId
     try {
         const userEvents = await getUserEvents(userId)
-        res.status(200).send({status: "success", data: userEvents})
+        res.status(200).json({status: "success", data: userEvents})
     } catch (error) {
         console.log("Error getting events")
-        res.status(500).send({status: "failure", message: "error fetching data", error: error})
+        res.status(500).json({status: "failure", message: "error fetching data"})
     }
 }
 
@@ -43,7 +43,6 @@ exports.createEventByUser = async (req, res) => {
         'amount': data.price,
         'totalTickets': data.totalTickets,
         'start': data.start,
-        'end': data.end,
         'imageUrl': result.secure_url,
         'organizer': data.organizer,
         'userId': req.params.userId
@@ -53,10 +52,10 @@ exports.createEventByUser = async (req, res) => {
 
     try {
         const result = await createEvent(form);
-        res.status(201).send({status: "success", message: "event created successfuly", data: result});
+        res.status(201).json({status: "success", data: result});
     } catch (error) {
         console.error('Error creating event:', error);
-        res.status(500).send({status: "failure", message: "error creating event", error: error});
+        res.status(500).json({status: "failure", message: "error creating event"});
     }
 }
 
@@ -70,10 +69,10 @@ exports.createEventByUser = async (req, res) => {
 exports.getAllEvents =  async (req, res) => {
     try {
         const events = await getEvents()
-        res.status(200).send({status: "success", data: events}); 
+        res.status(200).json({status: "success", data: events}); 
     } catch (error) {
         console.error('Error creating event:', error);
-        res.status(500).send({status: "failure", message: "error fetching data", error: error});
+        res.status(500).json({status: "failure", message: "error fetching data"});
     }
     
 }

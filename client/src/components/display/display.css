@@ -1,44 +1,21 @@
-.header {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+.display {
+  position: absolute;
+  top: 13%;
+  left: 1%;
+  width: 400px;
+  height: 80px;
+  color: white;
+  background: rgba(2, 100, 71, 0.9);
+  margin: 0 auto;
+  z-index: 2;
+}
+
+  .disp-message {
     display: flex;
-    justify-content: space-between;
-    padding-top: 50px;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 16px;
+  margin-left: 2px;
+  margin-right: 2px;
   }
-  
-  .logo {
-    font-family: "League Spartan", sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-  }
-  
-  .header-button {
-    width: 206px;
-    height: 56px;
-    background: #00d395;
-    border-radius: 24px;
-    border: none;
-    font-family: "League Spartan", sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    color: white;
-  }
-  
-  .header-inner {
-    display: flex;
-    justify-content: space-between;
-    width: 400px;
-  }
-  
-  .network {
-    margin-right: 10px;
-    padding-top: 18px;
-    font-family: "League Spartan", sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-  }
-  
