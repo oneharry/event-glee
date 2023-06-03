@@ -13,16 +13,18 @@ export default function Event() {
   const [description, setDescription] = useState('')
   const [eventImage, setEventImage] = useState();
   const [category, setCategory] = useState('');
-  const [ticketPrice, setTicketPrice] = useState('');
-  const [numberOfTickets, setNumberOfTickets] = useState('');
-  const [startDate, setStartDate] = useState('');
+  const [ticketPrice, setTicketPrice] = useState();
+  const [numberOfTickets, setNumberOfTickets] = useState(0);
+  const [startDate, setStartDate] = useState();
   const [organizer, setOrganizer] = useState('');
   const [loading, setLoading] = useState(false);
 
 
-  const {token, getUserJWT, currentUser, setDisplayMsg} = useAuth();
+
+  const {token, getUserJWT, currentUser, setDisplayMsg, errmsg} = useAuth();
   const navigate = useNavigate();
-  const dateTime = new Date();
+  const eventDate = new Date(startDate)
+  const today = new Date();
 
   useEffect(() => {
     if(!currentUser) {
@@ -31,9 +33,22 @@ export default function Event() {
     
   }, [currentUser])
 
+  const resetForm = () => {
+    setEventName("")
+    setVenue("")
+    setDescription("")
+    setEventImage("")
+    setCategory("")
+    setTicketPrice()
+    setNumberOfTickets()
+    setStartDate("")
+    setOrganizer("")
+  }
+
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    
     // Perform form submission or other actions here
     const formData = new FormData()
     formData.append("image", eventImage)
@@ -47,28 +62,30 @@ export default function Event() {
       formData.append("organizer", organizer)
    
       if(!eventName) {
+        console.log("ME")
         setDisplayMsg("name field can't be empty", "failure")
       } else if(!category) {
+        console.log("MEG")
         setDisplayMsg("category field can't be empty", "failure")
       } else if(!description) {
         setDisplayMsg("description field can't be empty", "failure")
       } else if(!venue) {
         setDisplayMsg("venue field can't be empty", "failure")
-      } else if (!ticketPrice) {
-        setDisplayMsg("price field can't be empty", "failure")
-      } else if (!numberOfTickets) {
-        setDisplayMsg("number of tickets field can't be empty", "failure")
-      } else if (!startDate || startDate <= dateTime ) {
-        setDisplayMsg("event date is not correct", "failure")
+      } else if (typeof ticketPrice !== 'number') {
+        setDisplayMsg("price must be a number", "failure")
+      } else if (Number.isNaN(numberOfTickets) || numberOfTickets < 1 ) {
+        setDisplayMsg("number must be greater that 0", "failure")
+      } else if (!startDate || eventDate <= today ) {
+        setDisplayMsg("event must be set for upcoming date", "failure")
       } else if (!organizer) {
         setDisplayMsg("organizer field can't be empty", "failure")
       } else if (!eventImage) {
         setDisplayMsg("venue field can't be empty", "failure")
       } else {
         try {
-          setLoading(true);
-        
-          console.log(formData)
+          setLoading(true)
+          console.log("H", formData)
+
           const res = await axios.post(`http://localhost:5000/${currentUser.uid}/events`, formData, {
             headers: {
               authorization: `Bearer ${token}`,
@@ -79,6 +96,7 @@ export default function Event() {
           console.log(res.data);
           setDisplayMsg("event created successfully", "success")
           setLoading(false);
+          resetForm();
         } catch (error) {
           console.log("Failed to register", error)
           setDisplayMsg("error creating event, try again!", "failure")
@@ -89,7 +107,7 @@ export default function Event() {
 
   return (
     <div>
-      <Display />
+      {errmsg !== '' && <Display /> }
         <form>
           <section className="event-section1">
             <div className="event-text1">Create Event</div>
@@ -236,7 +254,7 @@ export default function Event() {
               disabled={loading}
               style={loading ? {cursor: 'progress'} : null}
               onClick={handleSubmit}>
-                { loading ? (<LoadingButton />) : "Create Event"}
+                { loading ? (<LoadingButton />) : "Create my Event"}
               </button>
             </div>
           </section>

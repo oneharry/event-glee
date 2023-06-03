@@ -7,7 +7,7 @@ import { useAuth } from '../context/context';
 
 
 export default function Home() {
-const {currentUser, token, loading, getUserJWT, allEvents, getAllEvents} = useAuth();
+const {currentUser, loading, getUserJWT, allEvents, getAllEvents} = useAuth();
 
 
 useEffect(() => {
@@ -65,12 +65,11 @@ console.log(allEvents)
             <div className="home-text2">Upcoming events</div>
               <div className="home-flow">
                 {
-                (allEvents.length === 0 && loading) ? <h1>Loading...</h1> : ((allEvents.length === 0 && !loading) ? <h1>There are no upcoming event(s)</h1> :
+                (allEvents.length === 0 && loading) ? <h1>Loading...</h1> : (allEvents.length === 0 && !loading) ? <h1>There are no upcoming event(s)</h1> :
                     (
                     allEvents.map((item) => {
                       return <EventCard event={item} />
                     }))
-                  )
                 }
               </div>
             </div>

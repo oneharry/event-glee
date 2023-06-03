@@ -1,21 +1,21 @@
 .display {
-  position: absolute;
+  position: sticky;
   top: 13%;
   left: 1%;
+  right: 30px;
   width: 400px;
-  height: 80px;
+  height: 60px;
   color: white;
   background: rgba(2, 100, 71, 0.9);
-  margin: 0 auto;
   z-index: 2;
 }
 
   .disp-message {
     display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  margin-top: 16px;
+  margin-top: 20px;
   margin-left: 2px;
   margin-right: 2px;
   }
