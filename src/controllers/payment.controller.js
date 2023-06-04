@@ -22,17 +22,15 @@ const getRandomNum = () => {
 const getTicket = async (eventId) => {
     const ticketId = getRandomNum();
 
-    
-    const eventInfo = await getEventById(eventId);
-
-    
-    const myTicket = {
-        "ticketId": ticketId,
-        "eventId": eventId,
-        "userId": eventInfo.userId
-    }
-
     try {
+        const eventInfo = await getEventById(eventId);
+    
+        const myTicket = {
+            "ticketId": ticketId,
+            "eventId": eventId,
+            "userId": eventInfo.userId
+        }
+
         await createTicket(myTicket);
         const mailRes = await sendMail(eventInfo, ticketId)
         return (mailRes)

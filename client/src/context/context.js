@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
     const [filteredEvents, setFilteredItems] = useState([]);
     const [errmsg, setErrMsg] = useState('');
     const [status, setStatus] = useState('');
+    const [loadingTicket, setLoadingTicket] = useState(false);
     
   
     useEffect(() => {
@@ -60,6 +61,7 @@ export const AuthProvider = ({ children }) => {
         }
       }
 
+
       const handleSearch = (e) => {
         const query = e.target.value.toLowerCase();
         setSearchQuery(query);
@@ -69,7 +71,12 @@ export const AuthProvider = ({ children }) => {
             event.name.toLowerCase().includes(query) ||
             event.category.toLowerCase().includes(query)
         );
-        setFilteredItems(filtered);
+        if (query === '') {
+          setFilteredItems(allEvents)
+        } else {
+          setFilteredItems(filtered);
+        }
+        
       };
 
 
@@ -77,6 +84,7 @@ export const AuthProvider = ({ children }) => {
         setErrMsg(msg);
         setStatus(status)
       }
+
 
       const value = {
         currentUser,
@@ -93,7 +101,10 @@ export const AuthProvider = ({ children }) => {
         searchQuery,
         setDisplayMsg,
         errmsg,
-        status
+        status,
+        handleSearch,
+        loadingTicket,
+        setLoadingTicket
       }
   
     return (

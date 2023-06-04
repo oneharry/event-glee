@@ -65,6 +65,8 @@
     font-size: 18px;
     color: #def3ec;
     text-decoration: none;
+    height: 100%;
+    width: 100%;
   }
   .home-link1 {
     font-family: "League Spartan", sans-serif;
@@ -73,6 +75,8 @@
     font-size: 18px;
     color: #026447;
     text-decoration: none;
+    height: 100%;
+    width: 100%;
   }
 
 

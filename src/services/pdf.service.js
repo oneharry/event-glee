@@ -1,6 +1,7 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const doc = new PDFDocument({size: 'A4'})
+const axios = require('axios')
 
 
 /*
@@ -9,40 +10,43 @@ const doc = new PDFDocument({size: 'A4'})
 * Returns: a doc
 */
 exports.createTicketPDF = async (data, ticketId) => {
-    const {name, imgurl, start, end, amount} = data
+    const {name, imageUrl, start, end, amount} = data
 
-    const dateCompare = (start, end) => {
-        const options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    const dateFormat = (dateString) => {
+        const dayArr = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
+        const monthArr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    
+        const dateObj = new Date(dateString);
+        const year = dateObj.getFullYear();
+        const month = monthArr[dateObj.getMonth()];
+        const day = dayArr[dateObj.getDay()]
+        const dayOfMonth = dateObj.getDate();
+        const hours = dateObj.getHours();
+        const minutes = dateObj.getMinutes();
+    
+        const fmtDate = `${day}, ${month} ${dayOfMonth} ${year}  ${hours}:${minutes}`
+        return fmtDate;
+      }
 
-        const formattedDate1 = start.toLocaleDateString(undefined, options);
-        const formattedDate2 = end.toLocaleDateString(undefined, options);
-
-        if (start.toDateString() === end.toDateString()) {
-            const timeDiff = Math.abs(end - start);
-            const formattedTimeDiff = new Date(timeDiff).toISOString().substr(11, 8);
-            return `${formattedDate1} - ${formattedTimeDiff}`;
-        } else {
-            const dates = [];
-            const currentDate = new Date(start);
-            currentDate.setHours(0, 0, 0, 0);
-            const endDate = new Date(end);
-            endDate.setHours(0, 0, 0, 0);
-
-            while (currentDate <= endDate) {
-            dates.push(currentDate.toLocaleDateString(undefined, options));
-            currentDate.setDate(currentDate.getDate() + 1);
-            }
-
-            return dates.join('\n');
+      const imgBuff = async (url) => {
+        try {
+            const res = await axios.get(url, {responseType: 'arraybuffer'})
+            const imageData = Buffer.from(res.data, 'binary');
+            console.log("image buffer", imageData)
+            return imageData;
+        } catch (error) {
+            console.log("error getting image buffer", error)
+            return error
         }
     }
 
-    const date = dateCompare(start, end);
+    const date = dateFormat(start);
     const price = (amount == 0) ? "Free" : `N${amount}`;
     
     try {
         // doc.pipe(fs.createWriteStream(`${eventName}_${tickedId}.pdf`));
 
+        const img = await imgBuff(imageUrl);
         doc.moveUp(3)
         doc.fillColor('green')
         .fontSize(30)
@@ -95,13 +99,13 @@ exports.createTicketPDF = async (data, ticketId) => {
             align: 'right'
         })
 
-        // doc
-        // .image(`${imgurl}`, 430, 80, {
-        //     width: 100,
-        //     height: 100,
-        //     align: 'right'
-        // })
-        // .moveUp()
+        doc
+        .image(img, 430, 80, {
+            width: 100,
+            height: 100,
+            align: 'right'
+        })
+        .moveUp()
 
         doc.end()
         return doc;

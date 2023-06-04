@@ -1,11 +1,19 @@
 import './css/Discover.css';
 import { useAuth } from '../context/context';
 import { EventCard } from "../components";
+import { useEffect } from 'react';
 
 
 export default function Discover() {
 
-  const { filteredEvents, searchQuery } = useAuth()
+  const { filteredEvents, searchQuery, allEvents } = useAuth();
+  let myEvents;
+  if(searchQuery === '') {
+    myEvents = allEvents
+  } else {
+    myEvents = filteredEvents
+  }
+
 
   console.log("Discov", filteredEvents);
   return (
@@ -21,13 +29,13 @@ export default function Discover() {
             
             <div className="disc-flow">
               {
-                  (filteredEvents.length === 0 ) ? <h1 style={{
+                  (myEvents.length === 0 ) ? <h1 style={{
                     color: "black",
                     textAlign: "center",
                     fontSize: "24px",
-                  }}>Nothing found!!..</h1> :
+                  }}>No match found!!..</h1> :
                     (
-                      filteredEvents.length > 0 && filteredEvents.map((item) => {
+                      myEvents.length > 0 && myEvents.map((item) => {
                       return <EventCard event={item} />
                     })
                   )

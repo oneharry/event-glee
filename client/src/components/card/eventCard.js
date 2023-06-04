@@ -8,7 +8,9 @@ export default function EventCard({event}) {
 
   const [loading, setLoading] = useState(false);
   const {name, organizer, start, description, venue, amount, eventId, imageUrl} = event;
-  const {currentUser, getUserJWT} = useAuth()
+  const {currentUser, getUserJWT, setDisplayMsg, loadingTicket, setLoadingTicket} = useAuth()
+
+
 
   const date = (dateString) => {
     const dayArr = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
@@ -24,10 +26,23 @@ export default function EventCard({event}) {
 
     const fmtDate = `${day}, ${month} ${dayOfMonth} ${year}  ${hours}:${minutes}`
     return fmtDate;
-}
+  }
+
+
+  const isSoldOut = (item) => {
+    
+    const totalTickets = item.totalTickets;
+    const soldTickets = item.numSold;
+
+    return (soldTickets >= totalTickets)
+  }
+
+
   
   const handleTicket = async() => {
     try {
+      setLoading(true)
+      setLoadingTicket(true)
       const token = await getUserJWT()
       const data = {
         "eventId": eventId,
@@ -37,9 +52,14 @@ export default function EventCard({event}) {
         authorization: `Bearer ${token}`
       }
       const res = await axios.post('http://localhost:5000/ticket', data, { headers} );
-
+      setLoading(false)
+      setLoadingTicket(false)
+      setDisplayMsg("See you soon at the event", "success")
     } catch (error) {
       console.log("issues loading")
+      setDisplayMsg("error getting ticket, try again!", "failure")
+      setLoading(false)
+      setLoadingTicket(false)
     }
 
   }
@@ -62,12 +82,17 @@ export default function EventCard({event}) {
             </div>
             <div className="home-text6">{organizer}</div>
             {
-              !currentUser ? null : (
-                loading ? <LoadingButton /> : (
-                  <button className="ticket-button" type="submit" onClick={handleTicket}>
-                    Get Ticket
-                  </button>
-                )
+              isSoldOut(event) ? <h3 style={{textAlign: "end", color: "gray", fontWeight: "bolder", paddingRight: "5px"}}>Sold Out</h3> : null
+            }
+            {
+              (!currentUser || isSoldOut(event)) ? null : (
+                <button className="create-but" //"create-but"
+                type='submit'
+                  disabled={loadingTicket}
+                  style={loadingTicket ? {cursor: 'progress', backgroundColor: '#7a9b91'} : null}
+                  onClick={handleTicket}
+                  > { loading ? (<LoadingButton />) : "Get Ticket"}
+                </button>
               )
             }
           </div>

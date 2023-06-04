@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from "react";
 import {useNavigate} from 'react-router-dom'
 import './css/Profile.css'
-import { TicketCard, EventCard } from "../components";
+import { TicketCard, EventCard, Display } from "../components";
 import axios from 'axios';
 import { useAuth } from "../context/context";
 
@@ -15,7 +15,7 @@ export default function Profile() {
   const [myTickets, setMyTickets] = useState([])
   
   const navigate = useNavigate()
-  const {currentUser, token} = useAuth();
+  const {currentUser, token, errmsg} = useAuth();
 
   const getMyEvents = async() => {
     try {
@@ -60,6 +60,7 @@ export default function Profile() {
 
   return (
     <div>
+      {errmsg !== '' && <Display /> }
       <main>
         <div className="profile-list">
           <div

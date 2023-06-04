@@ -20,7 +20,7 @@ exports.sendMail = async (data, ticketId) => {
         subject: 'EVENTGLEE',
         text: name,
         attachments: [{
-            filename: `${ticketId}_ticket.pdf`,
+            filename: `${ticketId}_${name}.pdf`,
             content: doc
         }]
     }

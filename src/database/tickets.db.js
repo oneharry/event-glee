@@ -51,7 +51,12 @@ exports.createTicket = async (ticket) => {
         (ticketId, eventId, userId)
         VALUES (?, ?, ?)
         `, [ticket.ticketId, ticket.eventId, ticket.userId]);
-        // return getTicketById(ticket.ticketId);
+        
+        await conn.query(`
+        UPDATE events 
+        SET numSold = (numSold + 1) 
+        WHERE eventId = ?
+        `, [ticket.eventId])
       } catch (error) {
         console.error('Error retrieving events:', error);
         return (error)
