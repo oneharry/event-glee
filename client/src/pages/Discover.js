@@ -14,6 +14,10 @@ export default function Discover() {
     myEvents = filteredEvents
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  })
+
 
   console.log("Discov", filteredEvents);
   return (
@@ -29,11 +33,15 @@ export default function Discover() {
             
             <div className="disc-flow">
               {
-                  (myEvents.length === 0 ) ? <h1 style={{
+                  (myEvents.length === 0 && searchQuery) ? <h1 style={{
                     color: "black",
                     textAlign: "center",
                     fontSize: "24px",
-                  }}>No match found!!..</h1> :
+                  }}>No match found!!..</h1> : (myEvents.length === 0 && searchQuery === '') ? <h1 style={{
+                    color: "black",
+                    textAlign: "center",
+                    fontSize: "24px",
+                  }}>Loading!!..</h1> :
                     (
                       myEvents.length > 0 && myEvents.map((item) => {
                       return <EventCard event={item} />

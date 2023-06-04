@@ -17,6 +17,9 @@ export default function Profile() {
   const navigate = useNavigate()
   const {currentUser, token, errmsg} = useAuth();
 
+
+  const eventDate = (dateString) => new Date(dateString);
+  const today = new Date()
   const getMyEvents = async() => {
     try {
       setLoading(true);
@@ -25,7 +28,9 @@ export default function Profile() {
           authorization: `Bearer ${token}`
         }
       });
-      setMyEvents(res.data.data);
+      const result = res.data.data;
+      const upcomingEvents = result.filter((event) => eventDate(event.start) >= today)
+      setMyEvents(upcomingEvents);
       setLoading(false);
     } catch (error) {
       console.log("Error loading events")
@@ -40,7 +45,10 @@ export default function Profile() {
           authorization: `Bearer ${token}`
         }
       });
-      setMyTickets(res.data.data);
+
+      const result = res.data.data;
+      const upcomingEventTickets = result.filter((event) => eventDate(event.start) >= today)
+      setMyTickets(upcomingEventTickets);
       setLoading1(false);
     } catch (error) {
       console.log("Error", error)
@@ -103,7 +111,7 @@ export default function Profile() {
             </div>
           </section>
         ) : profileState === "active" ? (
-          <section className="profile-active">
+          <section className="profile-ticket">
             <div className="home-flow1">
                 {
                   (myTickets.length ===  0 && loading1) ? <h1 style={{

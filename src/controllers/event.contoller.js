@@ -49,7 +49,7 @@ exports.createEventByUser = async (req, res) => {
     }
 
     try {
-        console.log("EVEN", form)
+        console.log("EVENT", form)
         const result = await createEvent(form);
         res.status(201).json({status: "success", data: result});
     } catch (error) {
@@ -60,7 +60,7 @@ exports.createEventByUser = async (req, res) => {
 
 
 /*
-* getAllEvents - Fetches events  from database 
+* getAllEvents - Fetches events from database 
 * req: http request object
 * res: http response object
 * Returns: an array of the events object response to client
