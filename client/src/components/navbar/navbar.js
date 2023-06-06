@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './navbar.css';
 import { useAuth } from '../../context/context';
 
 
 const Navbar = () => {
+  const [showNav, setShowNav] = useState(false);
   const {currentUser, logout, handleSearch} = useAuth();
   const navigate = useNavigate()
 
@@ -13,47 +14,43 @@ const Navbar = () => {
     navigate('/discover');
   };
 
-  return (
-    <nav>
-      <div className="nav">
-        <Link to="/" className="logo">
-        EventGlee
-          {/* <div className="logo"></div> */}
-        </Link>
 
-        <div className="nav-inner">
-          <div className="search">
-            <div className="search-inner">
-              <input
-                className="search-input"
-                placeholder="Search event names, category"
-                // ref={searchRef}
-                onChange={handleSearch}
-                onClick={handleInputClick}
-              />
-            </div>
+
+  return (
+    <nav className="navbar navbar-expand-lg bg-light">
+        <div className="container-fluid">
+          <Link to="/" className="logo navbar-brand" >EventGlee</Link>
+          <button onClick={() => setShowNav(!showNav)} className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className={showNav ? "collapse navbar-collapse show" : "collapse navbar-collapse"} id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link to={"/discover"} className="nav-link" >Discover</Link>
+              </li>
+              <li className="nav-item">
+                <Link to={"/event"} className="nav-link" >Create Event</Link>
+              </li>
+              <li className="nav-item">
+                {
+                  currentUser ?  (<Link to={'/profile'} className="nav-link">Profile</Link>) : (
+                    <Link className="nav-link" to={'/login'}> Log In</Link>
+                  )
+                }
+              </li>
+          
+              
+                {
+                  !currentUser ? (<Link className="nav-link" to={'/register'}> Sign Up</Link>) : (
+                    <div>
+                      <button className="nav-button sign-out" onClick={logout}> Sign Out</button>
+                      
+                    </div>)
+              }
+            </ul>
           </div>
         </div>
-
-        <div className="nav-inner">
-          <Link to={'/event'} className="nav-link "> Create event</Link>
-          {
-            currentUser ?  (<Link to={'/profile'} className="nav-link">Profile</Link>) : (
-              <Link className="nav-link" to={'/login'}> Sign In</Link>
-            )
-          }
-          {
-            !currentUser ? (<Link className="nav-link" to={'/register'}> Sign Up</Link>) : (
-              <div>
-                <button className="nav-button sign-out" onClick={logout}> Sign Out</button>
-                
-              </div>)
-          }
-          
-        </div>
-      </div>
-      <hr></hr>
-    </nav>
+      </nav>
   );
 };
 

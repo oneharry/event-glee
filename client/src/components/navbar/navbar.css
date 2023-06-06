@@ -1,42 +1,16 @@
-.nav {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  padding: 20px 0;
-  /* box-shadow: 1px 1px 2px #026447; */
-}
-
-
 .logo {
   font-family: "League Spartan", sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 25px;
   text-decoration: none;
   color: #026447;
   padding-left: 20px;
   text-shadow: 2px 2px 3px #000000;
 }
 
-.nav-button {
-  cursor: pointer;
-  font-family: "League Spartan", sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  color: #026447;
-  border: none;
-  background-color: white;
-}
-
-
-.nav-inner {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 400px;
+.logo:hover, .nav-link:hover {
+  color: #025e42;
 }
 
 .sign-out {
@@ -49,87 +23,23 @@
   font-style: normal;
   font-weight: normal;
   font-size: 20px;
+  
+}
+
+.nav-link {
   color: #026447;
 }
 
-.network {
-  margin-right: 10px;
-  padding-top: 18px;
-  font-family: "League Spartan", sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-}
-
-.search {
-  /* background-image: url("../../public/images/hello2.png"); */
-  width: 100%;
-
-}
-
-.search-input {
-  width: 100%;
-  height: 50px;
-  border: none;
-  font-family: "Quicksand";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  background: #dadddd;
-  padding-left: 10px;
-  color: #026447;
-}
-
-.search-inner {
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 
-.navbar-menu {
-  display: flex;
-  flex-direction: column;
-  background-color: #f0f0f0;
-  margin-top: 10px;
-  padding: 10px ;
-  display: none; /* Hide the menu by default */
-  position: absolute;
-  top: 100%;
-}
-
-.navbar:hover .navbar-menu {
-  display: flex; /* Show the menu on hover */
-  flex-direction: column;
-}
-
-.navbar-menu-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.navbar-menu-item {
-  margin-bottom: 5px;
-}
-
-.navbar-menu-item a {
-  text-decoration: none;
-  color: #333;
-}
-
-@media screen and (min-width: 768px) {
-  .navbar {
-    flex-direction: row;
+@media only screen and (min-width: 768px) {
+  .collapse {
+    display: flex;
+    justify-content: end;
   }
 
-  .navbar-menu {
-    flex-direction: row;
-    margin-top: 0;
+  .nav-item {
+    margin: 2px 12px;
   }
 
-  .navbar-menu-item {
-    margin-right: 10px;
-    margin-bottom: 0;
-  }
 }
