@@ -5,7 +5,7 @@ const cors = require('cors');
 
 const bodyParser = require('body-parser')
 const homeRoute = require('./src/routes/app.route')
-const {getEvents, getUserEvents, createEvent, getUserEventTickets, createTicket, createUser} = require('./src/database')
+
 
 
 
