@@ -52,7 +52,7 @@ export default function Register() {
             "email": email,
             "userId": res.user.uid
           }
-          await axios.post('http://localhost:5000/user', data);
+          await axios.post('/api/user', data);
   
         setLoading(false);
         setDisplayMsg("successfully registered", "success")

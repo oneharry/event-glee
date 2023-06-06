@@ -23,7 +23,7 @@ export default function Profile() {
   const getMyEvents = async() => {
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:5000/${currentUser.uid}/events`, {
+      const res = await axios.get(`/api/${currentUser.uid}/events`, {
         headers: {
           authorization: `Bearer ${token}`
         }
@@ -40,7 +40,7 @@ export default function Profile() {
   const getMyTickets = async() => {
     try {
       setLoading1(true);
-      const res = await axios.get(`http://localhost:5000/${currentUser.uid}/ticket`, {
+      const res = await axios.get(`/api/${currentUser.uid}/ticket`, {
         headers: {
           authorization: `Bearer ${token}`
         }

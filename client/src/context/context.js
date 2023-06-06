@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
         const today = new Date();
         try {
           setLoading(true)
-          const res = await axios.get('http://localhost:5000/events')
+          const res = await axios.get('/api/events')
           const result = res.data.data;
           console.log("R", result)
           const upcomingEvents = result.filter((event) => eventDate(event.start) >= today)

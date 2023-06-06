@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 export default function Discover() {
 
-  const { filteredEvents, searchQuery, allEvents } = useAuth();
+  const { filteredEvents, searchQuery, allEvents, getAllEvents } = useAuth();
   let myEvents;
   if(searchQuery === '') {
     myEvents = allEvents
@@ -15,6 +15,7 @@ export default function Discover() {
   }
 
   useEffect(() => {
+    getAllEvents();
     window.scrollTo(0, 0);
   })
 
