@@ -21,6 +21,6 @@ app.use(cors());
 
 
 //routers
-app.use('/', homeRoute)
+app.use('/api/', homeRoute)
 
 app.listen(5000, () => console.log("Server running on Port 5000"));
