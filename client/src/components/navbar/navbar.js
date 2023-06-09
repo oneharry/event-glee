@@ -5,7 +5,7 @@ import { useAuth } from '../../context/context';
 
 
 const Navbar = () => {
-  const [showNav, setShowNav] = useState(false);
+  const[isCollapsed, setIsCollapsed] = useState(false);
   const {currentUser, logout, handleSearch} = useAuth();
   const navigate = useNavigate()
 
@@ -17,14 +17,14 @@ const Navbar = () => {
 
 
   return (
-    <nav className="navbar navbar-expand-lg bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <Link to="/" className="logo navbar-brand" >EventGlee</Link>
-          <button onClick={() => setShowNav(!showNav)} className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <button onClick={() => setIsCollapsed(!isCollapsed)}  className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded={isCollapsed ? false : true} aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className={showNav ? "collapse navbar-collapse show" : "collapse navbar-collapse"} id="navbarNav">
-            <ul className="navbar-nav">
+          <div className={`${isCollapsed ? "collapse" : ""} navbar-collapse`} id="navbarSupportedContent">
+            <ul className="navbar-nav  mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link to={"/discover"} className="nav-link" >Discover</Link>
               </li>
