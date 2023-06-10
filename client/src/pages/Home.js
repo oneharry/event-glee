@@ -35,7 +35,7 @@ console.log(allEvents)
               </div>
               <div className="home-buttons">
             <button className="home-discover-but">
-              <Link  to="/discover" className="home-link">
+              <Link  to="/discover" className="home-link fw-normal fs-5 text-white">
                 Discover your next event
               </Link>
             </button>

@@ -9,8 +9,8 @@ export default function Footer() {
       <div className="footer-inner">
         <div> &copy; Harrison 2023</div>
         <div className="footer-inner2">
-          <Link className="footer-link">About</Link>
-          <Link className="footer-link">Terms and Condition</Link>
+          <a href="/#about" className="footer-link">About</a>
+          <a href="/#feature" className="footer-link">Features</a>
           <Link className="footer-link" to="/discover">Find Events</Link>
         </div>
       </div>
