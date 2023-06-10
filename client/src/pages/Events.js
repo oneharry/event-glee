@@ -21,7 +21,7 @@ export default function Event() {
 
 
 
-  const {token, getUserJWT, currentUser, setDisplayMsg, errmsg} = useAuth();
+  const {token, currentUser, setDisplayMsg, errmsg} = useAuth();
   const navigate = useNavigate();
   const eventDate = new Date(startDate)
   const today = new Date();
@@ -86,7 +86,7 @@ export default function Event() {
           setLoading(true)
           console.log("H", formData)
 
-          const res = await axios.post(`http://localhost:5000/${currentUser.uid}/events`, formData, {
+          const res = await axios.post(`api/${currentUser.uid}/events`, formData, {
             headers: {
               authorization: `Bearer ${token}`,
               "Content-Type": 'multipart/form-data'

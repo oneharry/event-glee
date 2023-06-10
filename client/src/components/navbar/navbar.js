@@ -1,18 +1,11 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './navbar.css';
 import { useAuth } from '../../context/context';
 
 
 const Navbar = () => {
-  const[isCollapsed, setIsCollapsed] = useState(false);
   const {currentUser, logout} = useAuth();
-  const navigate = useNavigate()
 
-  const handleInputClick = () => {
-    // Navigate to the search component
-    navigate('/discover');
-  };
 
 
 

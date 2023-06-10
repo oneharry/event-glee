@@ -18,43 +18,8 @@ export default function Discover() {
     getAllEvents();
     window.scrollTo(0, 0);
   })
-const today = new Date();
-  myEvents = [{
-    name: "Harry",
-    description: "Test",
-    venue: "here",
-    organizer: "Hiya",
-    start: today,
-    imageUrl: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=700&q=60",
-    amount: 0
-  }, {
-    name: "Harry",
-    description: "Test",
-    venue: "here",
-    organizer: "Hiya",
-    start: today,
-    imageUrl: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=700&q=60",
-    amount: 0
-  }, {
-    name: "Harry",
-    description: "Test",
-    venue: "here",
-    organizer: "Hiya",
-    start: today,
-    imageUrl: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=700&q=60",
-    amount: 0
-  }, {
-    name: "Harry",
-    description: "Test",
-    venue: "here",
-    organizer: "Hiya",
-    start: today,
-    imageUrl: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=700&q=60",
-    amount: 0
-  }]
 
 
-  console.log("Discov", filteredEvents);
   return (
     <div className="main d-flex flex-column align-items-center">
       <input class="form-control me-2 w-50" 
