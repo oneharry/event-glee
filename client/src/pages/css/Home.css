@@ -102,33 +102,30 @@
   }
   
   .home-category {
-    width: 50%;
+  
     display: flex;
     justify-content: space-between;
     font-family: "League Spartan", sans-serif;
     font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
     margin-top: 20px;
     color: #def3ec;
+    flex-wrap: wrap;
   }
   
   .home-category2 {
-    width: 60%;
     display: flex;
     justify-content: space-between;
     font-family: "League Spartan", sans-serif;
     margin-left: auto;
     margin-right: auto;
     font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
     margin-bottom: 20px;
     margin-top: 20px;
     color: #def3ec;
+    flex-wrap: wrap;
   }
   
   .home-flow {

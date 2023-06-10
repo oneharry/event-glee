@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 export default function Discover() {
 
-  const { filteredEvents, searchQuery, allEvents, getAllEvents } = useAuth();
+  const { filteredEvents, searchQuery, allEvents, getAllEvents, handleSearch } = useAuth();
   let myEvents;
   if(searchQuery === '') {
     myEvents = allEvents
@@ -18,16 +18,56 @@ export default function Discover() {
     getAllEvents();
     window.scrollTo(0, 0);
   })
+const today = new Date();
+  myEvents = [{
+    name: "Harry",
+    description: "Test",
+    venue: "here",
+    organizer: "Hiya",
+    start: today,
+    imageUrl: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=700&q=60",
+    amount: 0
+  }, {
+    name: "Harry",
+    description: "Test",
+    venue: "here",
+    organizer: "Hiya",
+    start: today,
+    imageUrl: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=700&q=60",
+    amount: 0
+  }, {
+    name: "Harry",
+    description: "Test",
+    venue: "here",
+    organizer: "Hiya",
+    start: today,
+    imageUrl: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=700&q=60",
+    amount: 0
+  }, {
+    name: "Harry",
+    description: "Test",
+    venue: "here",
+    organizer: "Hiya",
+    start: today,
+    imageUrl: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=700&q=60",
+    amount: 0
+  }]
 
 
   console.log("Discov", filteredEvents);
   return (
-    <div className="main">
-      <main className="main-home">
-        <section className="disc-section1">
+    <div className="main d-flex flex-column align-items-center">
+      <input class="form-control me-2 w-50" 
+      type="search" 
+      placeholder="Search event name, category" 
+      aria-label="Search"
+      onChange={handleSearch}
+      />
+      <main className="main-home bg-white w-100">
+        <section className="disc-section1 bg-white">
       
           <div className="disc-section1-inner">
-            <div className='disc-text2'> Events</div>
+            <div className='disc-text2 fs-1'>Upcoming Events</div>
             {
               searchQuery ? <p style={{textAlign: "center"}}>Your search: <strong>{searchQuery}</strong></p> : null
             }

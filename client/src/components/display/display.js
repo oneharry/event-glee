@@ -7,7 +7,7 @@ export default function Display() {
 
   const [isVisible, setIsVisible] = useState(true);
 
-  const { errmsg, setErrMsg, status, setStatus, setDisplayMsg } = useAuth();
+  const { errmsg, status, setDisplayMsg } = useAuth();
 
   useEffect(() => {
     

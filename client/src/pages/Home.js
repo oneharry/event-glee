@@ -43,15 +43,15 @@ console.log(allEvents)
             </div>
           </div>
           <div className="category-section">
-            <div className="home-category">
+            <div className="home-category w-50 fs-5">
               <div>Arts</div>
               <div>Design</div>
               <div>Fashion</div>
               <div>Tech</div>
               <div>Music</div>
             </div>
-            <div className="home-category2">
-              <div>Business</div>
+            <div className="home-category2 w-50 fs-5">
+              <div >Business</div>
               <div>Sports</div>
               <div>Comedy</div>
               <div>Health</div>
@@ -73,9 +73,10 @@ console.log(allEvents)
                 <div class="card-body text-center">
                   <h4 class="card-title fs-2">Create Event</h4>
                   <p class="card-text fs-5">Seamlessly plan and organize various types of events, including parties, conferences, meetings, workshops, concerts, picnics, and more. The intuitive interface and
-                    user-friendly tools simplify the entire event planning process. 
+                    user-friendly tools simplify the entire event planning process.
+                    <Link to={"/event"} class="card-text fs-5"><small class="text-muted">Get started</small></Link>
                   </p>
-                  <Link to={"/event"} class="card-text fs-5"><small class="text-muted">Get started here</small></Link>
+                  
                 </div>
               </div>
             </div>
@@ -87,10 +88,11 @@ console.log(allEvents)
               <div class="col-md-8">
                 <div class="card-body text-center">
                   <h4 class="card-title fs-2 ">Tickets</h4>
-                  <p class=" card-text fs-5 ">An awesome experience for attendees, allowing them to easily get tickets for their favourite event and receive digital printable tickets in their emails.
-                    Search for your favourite events by name or by categories.
+                  <p class=" card-text fs-5 ">We provide awesome experience for attendees, users can find and book for their favourite event and receive digital printable tickets in their emails.
+                    Several categories of events such as Business, Music, Tech, Arts, Sports. Search for your favourite events by name or by categories.
+                     <Link class="card-text fs-5"><small to={"/discover"} class="text-muted">See events</small></Link>
                   </p>
-                  <Link class="card-text fs-5"><small to={"/discover"} class="text-muted">Discover your events</small></Link>
+                  
                 </div>
               </div>
               <div class="col-md-4">
@@ -112,8 +114,8 @@ console.log(allEvents)
                 <div class="card-body">
                   <h4 class="card-title fs-2">Why this project?</h4>
                   <p className='fs-5'>
-                    This project is part of my curriculum, to portfolio project that showcases my soft and technical skills, knowledge and creativity in developing software solutions.
-                    This project is so special to me because of the amount of hardwork, dedication, learning and growth throughout my ALX journey.
+                    The inspiration for this project is born out of the deep passion to build a user friendly platform that allows users easily plan for events.
+                    This project is part of my curriculum at Holberton, i was required to create portfolio project that showcases my soft and technical skills, knowledge and creativity in developing software solutions.
                   </p>
                   </div>
               </div>
@@ -130,9 +132,9 @@ console.log(allEvents)
                 <div class="card-body">
                   <h4 class="card-title fs-2">Contribution</h4>
                     <p className='fs-5'>
-                      You can reach out to me on my socials <span><a href='https://www.linkedin.com/in/ezugwu-harrison-b37493127/'>LinkedIn</a> | <a href='https://twitter.com/chd_harrisn'>Twitter</a> | <a href='https://github.com/oneharry'>Github</a></span>
+                      This project was developed by Ezugwu Harrison. Feel free to connect with me <span><a href='https://www.linkedin.com/in/ezugwu-harrison-b37493127/'>LinkedIn</a> | <a href='https://twitter.com/chd_harrisn'>Twitter</a> | <a href='https://github.com/oneharry'>Github</a></span>
                     </p>
-                    <p>The source code and project documentation can be found in the github repository for the project. Source code <a href='https://github.com/oneharry/event-glee'>here</a></p>
+                    <p className='fs-5'>The source code and project documentation can be found in the github repository for the project <a href='https://github.com/oneharry/event-glee'>here.</a></p>
                   </div>
               </div>
             </div>

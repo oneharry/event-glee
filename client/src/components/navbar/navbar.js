@@ -6,7 +6,7 @@ import { useAuth } from '../../context/context';
 
 const Navbar = () => {
   const[isCollapsed, setIsCollapsed] = useState(false);
-  const {currentUser, logout, handleSearch} = useAuth();
+  const {currentUser, logout} = useAuth();
   const navigate = useNavigate()
 
   const handleInputClick = () => {
@@ -17,7 +17,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-white">
         <div className="container-fluid">
           <Link to="/" className="logo navbar-brand" >EventGlee</Link>
           <button onClick={() => setIsCollapsed(!isCollapsed)}  className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded={isCollapsed ? false : true} aria-label="Toggle navigation">
