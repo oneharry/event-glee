@@ -16,13 +16,12 @@ export default function Discover() {
 
   useEffect(() => {
     getAllEvents();
-    window.scrollTo(0, 0);
   })
 
 
   return (
     <div className="main d-flex flex-column align-items-center">
-      <input class="form-control me-2 w-50" 
+      <input class="form-control me-2 w-100 w-md-50" 
       type="search" 
       placeholder="Search event name, category" 
       aria-label="Search"
