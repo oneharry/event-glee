@@ -69,10 +69,10 @@ export default function EventCard({event}) {
       const headers = {
         authorization: `Bearer ${token}`
       }
-      const res = await axios.post('http://localhost:5000/ticket', data, { headers} );
+      const res = await axios.post('/api/ticket', data, { headers} );
       setLoading(false)
       setLoadingTicket(false)
-      setDisplayMsg("See you soon at the event", "success")
+      setDisplayMsg("Success, ckeck your email for your ticket", "success")
     } catch (error) {
       console.log("issues loading")
       setDisplayMsg("error getting ticket, try again!", "failure")
@@ -91,15 +91,16 @@ export default function EventCard({event}) {
             alt={name}
           />
           <div className="card-body">
-            <div className="card-text fs-3 text-success">{name}</div>
+            <div className="card-text fs-3 text-success text-wrap">{name}</div>
             {/* <div className="card-text fs-5">{description}</div> */}
             
             <div className="card-text date text-muted text-center fs-5 my-1">{date(start)}</div>
-            <div className="card-text venue fs-5 text-success my-1"><strong>{venue}</strong></div>
+            <div className="card-text venue fs-5 text-success my-1 text-wrap"><strong>{venue}</strong></div>
             <div className="card-text fs-5 my-1">
                { (amount > 0) ? `N${amount}` : "Free"}
             </div>
-            <div className="card-text fs-5 my-1">{organizer}</div>
+            <div className="card-text fs-5 my-1 text-wrap">{organizer}</div>
+            <a href='#f' className="text-end" onClick={showModal}>show more</a>
             {
               isSoldOut(event) ? <h3 style={{textAlign: "end", color: "gray", fontWeight: "bolder", paddingRight: "5px"}}>Sold Out</h3> : null
             }
@@ -114,14 +115,13 @@ export default function EventCard({event}) {
                 </button>
               )
             }
-            <button type="button" className="btn btn-primary my-2" onClick={showModal}>show more</button>
           </div>
 
           <div className="modal top fade" ref={modalRef} tabindex="-1">
             <div className="modal-dialog modal-dialogue-scrollable modal-xl">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title fs-1 text-success text-center">{name}</h5>
+                  <h5 className="modal-title fs-1 text-success text-center text-wrap">{name}</h5>
                   <button type="button" className="btn-close" onClick={hideModal} data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body d-flex">
@@ -131,30 +131,29 @@ export default function EventCard({event}) {
                         src={imageUrl}
                         alt={name}
                       />
-                    <div className='d-flex flex-column justify-content-around align-items-center w-100'>
-                      <div className="card-text fs-5 text-dark">{description}</div>
+                    <div className='d-flex flex-column align-items-center w-100'>
+                      <div className="card-text fs-5 text-dark text-wrap">{description}</div>
                       <div className="card-text date text-muted text-center fs-5">{date(start)}</div>
-                      <div className="card-text venue fs-5 text-success"><strong>{venue}</strong></div>
+                      <div className="card-text venue fs-5 text-success text-wrap"><strong>{venue}</strong></div>
                       <div className="card-text fs-5 text-dark">
                         { (amount > 0) ? `N${amount}` : "Free"}
                       </div>
-                      <div className="card-text fs-5 text-dark">{organizer}</div>
-
-                  </div>
-                  {
-                    isSoldOut(event) ? <h3 style={{textAlign: "end", color: "gray", fontWeight: "bolder", paddingRight: "5px"}}>Sold Out</h3> : null
-                  }
-                  {
-                    (!currentUser || isSoldOut(event)) ? null : (
-                      <button className="create-but" //"create-but"
-                      type='submit'
-                        disabled={loadingTicket}
-                        style={loadingTicket ? {cursor: 'progress', backgroundColor: '#7a9b91'} : null}
-                        onClick={handleTicket}
-                        > { loading ? (<LoadingButton />) : "Get Ticket"}
-                      </button>
-                    )
-                  }
+                      <div className="card-text fs-5 text-dark text-wrap">{organizer}</div>
+                      {
+                        isSoldOut(event) ? <h3 style={{textAlign: "end", color: "gray", fontWeight: "bolder", paddingRight: "5px"}}>Sold Out</h3> : null
+                      }
+                      {
+                        (!currentUser || isSoldOut(event)) ? null : (
+                          <button className="create-but" //"create-but"
+                          type='submit'
+                            disabled={loadingTicket}
+                            style={loadingTicket ? {cursor: 'progress', backgroundColor: '#7a9b91'} : null}
+                            onClick={handleTicket}
+                            > { loading ? (<LoadingButton />) : "Get Ticket"}
+                          </button>
+                        )
+                      }
+                    </div>
                 </div>
                 <div className="modal-footer">
                 

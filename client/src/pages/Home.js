@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import './css/Home.css';
 import { Link } from 'react-router-dom';
-import { EventCard, Display } from "../components";
+import { Display } from "../components";
 import { useAuth } from '../context/context';
 
 
 
 export default function Home() {
-const {currentUser, loading, getUserJWT, allEvents, getAllEvents, errmsg} = useAuth();
+const {currentUser, getUserJWT, allEvents, getAllEvents, errmsg} = useAuth();
 
 
 useEffect(() => {
@@ -16,7 +16,7 @@ useEffect(() => {
   }
   getAllEvents();
   
-}, [ currentUser ])
+}, [ currentUser, getUserJWT, getAllEvents ])
 
 console.log(allEvents)
 
@@ -25,21 +25,19 @@ console.log(allEvents)
       <div id='home'>
         {errmsg !== '' && <Display /> }
         <div className="event">
-          <div class="card bg-dark text-dark border-0" >
-            <img src="https://images.pexels.com/photos/7794441/pexels-photo-7794441.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img" alt="..." height="600" />
+          <div class="card bg-dark text-white border-0" >
+            <img src="https://img.freepik.com/free-photo/green-wispy-smoke-corner-black-background-with-copy-space_23-2148092831.jpg?size=626&ext=jpg&ga=GA1.1.1075565164.1686337426&semt=ais" class="card-img" alt="..." height="500" />
             <div class="card-img-overlay d-flex flex-column justify-content-center">
-              <div>
-              <h2 className='d-flex flex-column justify-content-center w-75'>Discover and book events, concerts and more with EventGlee, the ultimate solution for securing tickets to the most exciting events in Nigeria</h2>
-              <p>Planning your event is just the beginning, we make your events discoverable and selling tickets easy to make your experience as smooth as possible</p>
-              
+              <div className='d-flex flex-column justify-content-center align-items-center text-center text-md-start'>
+                <h2 className='d-flex flex-column justify-content-center align-items-center text-center text-md-start w-75'>Discover and book events, concerts and more with EventGlee, the ultimate solution for securing tickets to the most exciting events in Nigeria</h2>
               </div>
               <div className="home-buttons">
-            <button className="home-discover-but">
-              <Link  to="/discover" className="home-link w-50 w-md-100 fw-normal fs-5 text-white">
-                Discover your next event
-              </Link>
-            </button>
-          </div>
+                <button className="home-discover-but bg-white col col-md-4 mx-auto"  >
+                  <Link  to="/discover" className="home-link fw-normal fs-5 text-dark">
+                    Discover your next event
+                  </Link>
+                </button>
+              </div>
             </div>
           </div>
           <div className="category-section">
@@ -60,18 +58,18 @@ console.log(allEvents)
           </div>
         </div>
 
-        <section id='feature' className="home-section1 mx-md-5 px-md-5">
-        <div class="card-header my-1 bg-white border-0 fs-1 fw-bold">
-              Features
-            </div>
-          <div class="card border-0 w-md-75 my-md-2 py-md-3 d-flex justify-content-center align-items-center" >
+        <section id='feature' className="home-section1 my-3 mx-md-5 px-md-5">
+          <div class="card-header col bg-white border-0 fs-1 fw-bold">
+              <h3>Features</h3>
+          </div>
+          <div class="card col border-0 my-2 mb-5 py-md-3 d-flex justify-content-center align-items-center" >
             <div class="row g-0 d-flex justify-content-center align-items-center">
               <div class="col-md-4">
                 <img src="https://images.pexels.com/photos/7551752/pexels-photo-7551752.jpeg" class="img-fluid rounded-start" alt="..." />
               </div>
-              <div class="col-md-8 w-md-50">
+              <div class="col">
                 <div class="card-body text-center">
-                  <h4 class="card-title fs-2">Create Event</h4>
+                  <h4 class="card-title fs-2">Have Plans?</h4>
                   <p class="card-text fs-5">Seamlessly plan and organize various types of events, including parties, conferences, meetings, workshops, concerts, picnics, and more. The intuitive interface and
                     user-friendly tools simplify the entire event planning process.
                     <Link to={"/event"} class="card-text fs-5"><small class="text-muted">Get started</small></Link>
@@ -81,11 +79,11 @@ console.log(allEvents)
               </div>
             </div>
           </div>
-
-          <div class="card border-0 w-md-75 my-md-4 py-md-3 d-flex justify-content-center align-items-center" >
+          <hr></hr>
+          <div class="card col  border-0 w-md-75 my-md-4 pt-2 py-md-3 d-flex justify-content-center align-items-center" >
             <div class="row g-0 d-flex justify-content-center align-items-center">
               
-              <div class="col-md-8">
+              <div class="col">
                 <div class="card-body text-center">
                   <h4 class="card-title fs-2 ">Tickets</h4>
                   <p class=" card-text fs-5 ">We provide awesome experience for attendees, users can find and book for their favourite event and receive digital printable tickets in their emails.
@@ -100,11 +98,9 @@ console.log(allEvents)
               </div>
             </div>
           </div>
-          
-
         </section>
         <hr></hr>
-        <section id='about' className="home-section1 mx-md-5 px-5">
+        <section id='about' className="home-section1 my-3 mt-5 mx-md-5 px-5">
           <div class="card text-center border-0 my-2">
             <div class="card-header bg-white fs-1 fw-bold border-0">
               About
