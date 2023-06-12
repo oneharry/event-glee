@@ -251,7 +251,7 @@ export default function Event() {
                 </div>
               </div>
               <button 
-              className="create-but"
+              className="create-but col col-md-8"
               disabled={loading}
               style={loading ? {cursor: 'progress'} : null}
               onClick={handleSubmit}>
