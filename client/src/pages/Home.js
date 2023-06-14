@@ -27,14 +27,14 @@ console.log(allEvents)
         {errmsg !== '' && <Display /> }
         <div className="event">
           <div class="card bg-dark text-white border-0" >
-            <img src="https://img.freepik.com/free-photo/green-wispy-smoke-corner-black-background-with-copy-space_23-2148092831.jpg?size=626&ext=jpg&ga=GA1.1.1075565164.1686337426&semt=ais" class="card-img" alt="..." height="500" />
+            <img src="https://images.pexels.com/photos/6315037/pexels-photo-6315037.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img" alt="..." height="500" />
             <div class="card-img-overlay d-flex flex-column justify-content-center">
               <div className='d-flex flex-column justify-content-center align-items-center text-center text-md-start'>
-                <h2 className='d-flex flex-column justify-content-center align-items-center text-center text-md-start w-75'>Discover and book events, concerts and more with EventGlee, the ultimate solution for securing tickets to the most exciting events in Nigeria</h2>
+                <h1 className='d-flex flex-column justify-content-center align-items-center text-success text-center text-md-start w-75 fw-bolder'>Discover and book events, concerts and more with EventGlee, the ultimate solution for securing tickets to the most exciting events in Nigeria</h1>
               </div>
-              <div className="home-buttons">
-                <button className="home-discover-but bg-white col col-md-4 mx-auto w-75"  >
-                  <Link  to="/discover" className="home-link fw-normal fs-5 text-dark w-100">
+              <div className="home-buttons d-flex justify-content-center">
+                <button className="btn btn-success"  >
+                  <Link  to="/discover" className="home-link fw-normal fs-5 text-light w-100">
                     Discover events
                   </Link>
                 </button>
@@ -42,14 +42,14 @@ console.log(allEvents)
             </div>
           </div>
           <div className="category-section">
-            <div className="home-category w-50 fs-5">
+            <div className="home-category w-75 mx-1 fs-5">
               <div>Arts</div>
               <div>Design</div>
               <div>Fashion</div>
               <div>Tech</div>
               <div>Music</div>
             </div>
-            <div className="home-category2 w-50 fs-5">
+            <div className="home-category2 w-100 mx-1  fs-5">
               <div >Business</div>
               <div>Sports</div>
               <div>Comedy</div>
