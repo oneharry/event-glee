@@ -65,13 +65,13 @@ console.log(allEvents)
           </div>
           <div class="card col border-0 my-2 mb-5 py-md-3 d-flex justify-content-center align-items-center" >
             <div class="row g-0 d-flex justify-content-center align-items-center">
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <img src="https://images.pexels.com/photos/7551752/pexels-photo-7551752.jpeg" class="img-fluid rounded-start" alt="..." />
               </div>
               <div class="col">
                 <div class="card-body text-center">
-                  <h4 class="card-title fs-2">Have Plans?</h4>
-                  <p class="card-text fs-5">Set up your events in just minutes and let your attendees get tickets.... Be it for Business, Music, Tech, Arts, Sports, Comedy.<br></br> Search for your favourite events by name or by categories.
+                  <h4 class="card-title fs-1">Have Plans?</h4>
+                  <p class="card-text fs-4">Set up your events in just minutes and let your attendees get tickets.... Be it for Business, Music, Tech, Arts, Sports, Comedy.<br></br> Search for your favourite events by name or by categories.
                 
                     <Link to={"/event"} class="card-text fs-5"><small class="text-muted">Get started</small></Link>
                   </p>
@@ -86,14 +86,14 @@ console.log(allEvents)
               
               <div class="col">
                 <div class="card-body text-center">
-                  <h4 class="card-title fs-2 ">Tickets</h4>
-                  <p class=" card-text fs-5 "> It's incredibly easy for you to find your best events, book your seat early. Your printable ticket is sent to your emails.
+                  <h4 class="card-title fs-1 ">Tickets</h4>
+                  <p class=" card-text fs-4 "> It's incredibly easy for you to find your best events, book your seat early. Your printable ticket is sent to your emails.
                      <Link class="card-text fs-5"><small to={"/discover"} class="text-muted">See events</small></Link>
                   </p>
                   
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <img src="https://images.pexels.com/photos/8261829/pexels-photo-8261829.jpeg?auto=compress&cs=tinysrgb&w=600" class="img-fluid rounded-start" alt="..." />
               </div>
             </div>
@@ -123,7 +123,7 @@ console.log(allEvents)
               <hr></hr>
               <div className=" card d-flex flex-column flex-md-row border-0 pt-5 mx-3 justify-content-center align-items-center">
                 <div>
-                  <img src={myfoto} className='card-img-top' style={{maxWidth: "300px"}} alt='Harrison img' />
+                  <img src={myfoto} className='card-img-top' style={{maxWidth: "350px"}} alt='Harrison img' />
                 </div>
                 <div className='card-body'>
                   <div>
