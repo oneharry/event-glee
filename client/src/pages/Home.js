@@ -30,7 +30,7 @@ console.log(allEvents)
             <img src="https://images.pexels.com/photos/6315037/pexels-photo-6315037.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img" alt="..." height="500" />
             <div class="card-img-overlay d-flex flex-column justify-content-center">
               <div className='d-flex flex-column justify-content-center align-items-center text-center text-md-start'>
-                <h1 className='d-flex flex-column justify-content-center align-items-center text-success text-center text-md-start w-75 fw-bolder'>Discover and book events, concerts and more with EventGlee, the ultimate solution for securing tickets to the most exciting events in Nigeria</h1>
+                <h1 className='d-flex flex-column justify-content-center align-items-center text-dark text-center text-md-start w-75 fw-bolder'>Discover and book events, concerts and more with EventGlee, the ultimate solution for securing tickets to the most exciting events in Nigeria</h1>
               </div>
               <div className="home-buttons d-flex justify-content-center">
                 <button className="btn btn-success"  >
@@ -100,7 +100,7 @@ console.log(allEvents)
           </div>
         </section>
         <hr></hr>
-        <section id='about' className="home-section1 my-3 mt-5 mx-md-5 px-5">
+        <section id='about' className="home-section1 my-3 mx-md-5 px-md-5">
           <div className="card text-center border-0 my-2">
             <div className="card-header bg-white fs-1 fw-bold border-0">
               <p className='fs-1 text-success'>About EventGlee</p>
@@ -121,9 +121,9 @@ console.log(allEvents)
                   </div>
               </div>
               <hr></hr>
-              <div className=" card d-flex flex-column flex-md-row border-0 pt-5 mx-3 justify-content-center align-items-center">
+              <div className=" card d-flex flex-column flex-md-row border-0 pt-5 justify-content-center align-items-center">
                 <div>
-                  <img src={myfoto} className='card-img-top' style={{maxWidth: "350px"}} alt='Harrison img' />
+                  <img src={myfoto} className='card-img-top' style={{maxWidth: "400px"}} alt='Harrison img' />
                 </div>
                 <div className='card-body'>
                   <div>

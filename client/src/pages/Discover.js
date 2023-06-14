@@ -18,46 +18,7 @@ export default function Discover() {
     getAllEvents();
   })
 
-  const day = new Date();
 
-  myEvents = [
-    {
-      name: "name",
-      category: "test",
-      description: "This on",
-      imageUrl: "image",
-      start: day,
-      venue: "online",
-      organizer: "Demo",
-    },
-    {
-      name: "name",
-      category: "test",
-      description: "This on",
-      imageUrl: "image",
-      start: day,
-      venue: "online",
-      organizer: "Demo",
-    },
-    {
-      name: "name",
-      category: "test",
-      description: "This on",
-      imageUrl: "image",
-      start: day,
-      venue: "online",
-      organizer: "Demo",
-    },
-    {
-      name: "name",
-      category: "test",
-      description: "This on",
-      imageUrl: "image",
-      start: day,
-      venue: "online",
-      organizer: "Demo",
-    },
-  ]
 
 
   return (
@@ -77,7 +38,7 @@ export default function Discover() {
               searchQuery ? <p style={{textAlign: "center"}}>Your search: <strong>{searchQuery}</strong></p> : null
             }
             
-            <div className="d-flex flex-wrap w-100 justify-content-around">
+            <div className="d-flex flex-wrap justify-content-around">
               {
                   (myEvents.length === 0 && searchQuery) ? <h1 style={{
                     color: "black",

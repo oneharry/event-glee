@@ -1,10 +1,9 @@
 .event-section1 {
-    width: 100%;
+    width: 800%;
     margin-left: auto;
     margin-right: auto;
     min-height: 80vh;
     padding-top: 20px;
-    background-image: linear-gradient(to bottom right, white, #026447, rgb(155, 247, 155))
   }
   
   .event-text1 {

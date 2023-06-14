@@ -31,14 +31,14 @@ export default function Login() {
     e.preventDefault();
     // Perform form submission or other actions 
     if (email === '' || !isValidEmail(email)) {
-      console.log("HI")
+   
       setDisplayMsg("incorrect email address", "failure");
     } else if(!password || password.length < 6 ) {
-      console.log("HO")
+    
       setDisplayMsg("password must be at least 6 characters long", "failure");
     } else {
       try {
-        console.log("Worked")
+    
         setLoading(true);
         await login(email, password);
         setLoading(false)
