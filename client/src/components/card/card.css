@@ -5,10 +5,12 @@
   background-color: white;
   margin-left: 10px;
   margin-top: 10px; */
-  width: 30%;
+  min-width: 30%;
   box-shadow: 1px  1px 0px #d2d4d4;
   border-radius: 8px;
 }
+
+
 
 .ticket-box {
   text-align: center;

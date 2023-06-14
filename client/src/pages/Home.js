@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import './css/Home.css';
+import myfoto from './img/myfoto.jpg';
 import { Link } from 'react-router-dom';
 import { Display } from "../components";
 import { useAuth } from '../context/context';
@@ -32,9 +33,9 @@ console.log(allEvents)
                 <h2 className='d-flex flex-column justify-content-center align-items-center text-center text-md-start w-75'>Discover and book events, concerts and more with EventGlee, the ultimate solution for securing tickets to the most exciting events in Nigeria</h2>
               </div>
               <div className="home-buttons">
-                <button className="home-discover-but bg-white col col-md-4 mx-auto"  >
-                  <Link  to="/discover" className="home-link fw-normal fs-5 text-dark">
-                    Discover your next event
+                <button className="home-discover-but bg-white col col-md-4 mx-auto w-75"  >
+                  <Link  to="/discover" className="home-link fw-normal fs-5 text-dark w-100">
+                    Discover events
                   </Link>
                 </button>
               </div>
@@ -60,7 +61,7 @@ console.log(allEvents)
 
         <section id='feature' className="home-section1 my-3 mx-md-5 px-md-5">
           <div class="card-header col bg-white border-0 fs-1 fw-bold">
-              <h3>Features</h3>
+              <p className='fs-1 text-success'>Features</p>
           </div>
           <div class="card col border-0 my-2 mb-5 py-md-3 d-flex justify-content-center align-items-center" >
             <div class="row g-0 d-flex justify-content-center align-items-center">
@@ -101,38 +102,40 @@ console.log(allEvents)
         </section>
         <hr></hr>
         <section id='about' className="home-section1 my-3 mt-5 mx-md-5 px-5">
-          <div class="card text-center border-0 my-2">
-            <div class="card-header bg-white fs-1 fw-bold border-0">
-              About
+          <div className="card text-center border-0 my-2">
+            <div className="card-header bg-white fs-1 fw-bold border-0">
+              <p className='fs-1 text-success'>About EventGlee</p>
             </div>
-            <div class="card-group border-0 my-2">
-              <div class="card d-flex justify-content-center align-items-center border-0">
-                <div class="card-body">
-                  <h4 class="card-title fs-2">Why this project?</h4>
+            <div className="d-flex flex-column justify-content-between border-0 my-2">
+              <div className="card d-flex justify-content-center align-items-center border-0">
+                <div className="card-body">
                   <p className='fs-5'>
                     The inspiration for this project is born out of the deep passion to build a user friendly platform that allows users easily plan for events.
+
                     This project is part of my curriculum at Holberton, i was required to create portfolio project that showcases my soft and technical skills, knowledge and creativity in developing software solutions.
                   </p>
-                  </div>
-              </div>
-              <div class="card border-0 d-flex justify-content-center align-items-center">
-                
-                <div class="card-body ">
-                  <h4 class="card-title fs-2">Timeline</h4>
                   <p className='fs-5'>
                     The timeline for this project spanned across 3 weeks of intensive research and 3 weeks of actual development
                   </p>
-                 </div>
-              </div>
-              <div class="card border-0 d-flex justify-content-center align-items-center">
-                <div class="card-body">
-                  <h4 class="card-title fs-2">Contribution</h4>
-                    <p className='fs-5'>
-                      This project was developed by Ezugwu Harrison. Feel free to connect with me <span><a href='https://www.linkedin.com/in/ezugwu-harrison-b37493127/'>LinkedIn</a> | <a href='https://twitter.com/chd_harrisn'>Twitter</a> | <a href='https://github.com/oneharry'>Github</a></span>
-                    </p>
-                    <p className='fs-5'>The source code and project documentation can be found in the github repository for the project <a href='https://github.com/oneharry/event-glee'>here.</a></p>
+                  <p className='fs-5'>The source code and project documentation can be found in the github repository for the project <a className='btn btn-success' href='https://github.com/oneharry/event-glee'>Go to Github repository</a></p>
                   </div>
               </div>
+              <hr></hr>
+              <div className=" border-0 d-flex fle justify-content-center  align-items-center pt-4">
+                <div>
+                  <img src={myfoto} className='card-img-top' alt='Harrison img' />
+                  <div class="card-body ">
+                  <h4 class="card-title fs-1">Ezugwu Harrison</h4>
+                  <p className='fs-5'>Sofwtare Engineer</p>
+                </div>
+                  <div className='d-flex justify-content-around pt-4'>
+                    <a href='https://twitter.com/chd_harrisn'><i className="fa-brands fa-twitter text-success fs-2"></i></a>
+                    <a href='https://github.com/oneharry'><i className="fa-brands fa-github text-success fs-2"></i></a>
+                    <a href='https://www.linkedin.com/in/ezugwu-harrison-b37493127/'><i className="fa-brands fa-linkedin text-success fs-2"></i></a>
+                  </div>
+                 </div>
+              </div>
+            
             </div>
           </div>
         </section>
