@@ -71,8 +71,8 @@ console.log(allEvents)
               <div class="col">
                 <div class="card-body text-center">
                   <h4 class="card-title fs-2">Have Plans?</h4>
-                  <p class="card-text fs-5">Seamlessly plan and organize various types of events, including parties, conferences, meetings, workshops, concerts, picnics, and more. The intuitive interface and
-                    user-friendly tools simplify the entire event planning process.
+                  <p class="card-text fs-5">Set up your events in just minutes and let your attendees get tickets.... Be it for Business, Music, Tech, Arts, Sports, Comedy.<br></br> Search for your favourite events by name or by categories.
+                
                     <Link to={"/event"} class="card-text fs-5"><small class="text-muted">Get started</small></Link>
                   </p>
                   
@@ -87,8 +87,7 @@ console.log(allEvents)
               <div class="col">
                 <div class="card-body text-center">
                   <h4 class="card-title fs-2 ">Tickets</h4>
-                  <p class=" card-text fs-5 ">We provide awesome experience for attendees, users can find and book for their favourite event and receive digital printable tickets in their emails.
-                    Several categories of events such as Business, Music, Tech, Arts, Sports. Search for your favourite events by name or by categories.
+                  <p class=" card-text fs-5 "> It's incredibly easy for you to find your best events, book your seat early. Your printable ticket is sent to your emails.
                      <Link class="card-text fs-5"><small to={"/discover"} class="text-muted">See events</small></Link>
                   </p>
                   
@@ -117,29 +116,31 @@ console.log(allEvents)
                   <p className='fs-5'>
                     The timeline for this project spanned across 3 weeks of intensive research and 3 weeks of actual development
                   </p>
-                  <p className='fs-5'>The source code and project documentation can be found in the github repository for the project <a className='btn btn-success' href='https://github.com/oneharry/event-glee'>Go to Github repository</a></p>
+                  <p className='fs-5'>The source code and project documentation can be found in the github repository for the project.</p>
+                  <p><a className='btn btn-success' href='https://github.com/oneharry/event-glee'>Go to Github repository</a></p>
                   </div>
               </div>
               <hr></hr>
-              <div className=" border-0 d-flex fle justify-content-center  align-items-center pt-4">
+              <div className=" card d-flex flex-column flex-md-row border-0 pt-5 mx-3 justify-content-center align-items-center">
                 <div>
-                  <img src={myfoto} className='card-img-top' alt='Harrison img' />
-                  <div class="card-body ">
-                  <h4 class="card-title fs-1">Ezugwu Harrison</h4>
-                  <p className='fs-5'>Sofwtare Engineer</p>
+                  <img src={myfoto} className='card-img-top' style={{maxWidth: "300px"}} alt='Harrison img' />
                 </div>
-                  <div className='d-flex justify-content-around pt-4'>
-                    <a href='https://twitter.com/chd_harrisn'><i className="fa-brands fa-twitter text-success fs-2"></i></a>
-                    <a href='https://github.com/oneharry'><i className="fa-brands fa-github text-success fs-2"></i></a>
-                    <a href='https://www.linkedin.com/in/ezugwu-harrison-b37493127/'><i className="fa-brands fa-linkedin text-success fs-2"></i></a>
+                <div className='card-body'>
+                  <div>
+                    <h4 class="card-title fs-1">Ezugwu Harrison</h4>
+                    <p className='fs-5'>Sofwtare Engineer</p>
                   </div>
-                 </div>
+                  <div className='d-flex justify-content-center pt-4'>
+                  <a href='https://twitter.com/chd_harrisn'><i className="fa-brands fa-twitter text-success fs-1 px-2"></i></a>
+                  <a href='https://github.com/oneharry'><i className="fa-brands fa-github text-success fs-1 px-2"></i></a>
+                  <a href='https://www.linkedin.com/in/ezugwu-harrison-b37493127/'><i className="fa-brands fa-linkedin text-success fs-1 px-2"></i></a>
+                </div>
+                </div>
+                
               </div>
-            
             </div>
           </div>
         </section>
-        {/* { <Footer /> } */}
       </div>
     );
   }
