@@ -63,7 +63,8 @@ export default function EventCard({event}) {
       const token = await getUserJWT()
       const data = {
         "eventId": eventId,
-        "amount": amount
+        "amount": amount,
+        "userId": currentUser.uid
       }
       const headers = {
         authorization: `Bearer ${token}`
@@ -88,7 +89,7 @@ export default function EventCard({event}) {
     
     return (
 
-      <div className=" home-box mx-2 mb-5 border-0" key={eventId}>
+      <div className=" home-box mx-1 my-1 border-0" key={eventId}>
           <img
             className="img-img-top"
             src={imageUrl}

@@ -10,7 +10,7 @@ exports.canGetTicket = async (req, res, next) => {
     if(soldTickets < totalTickets) {
         next()
     } else {
-        console.log("event tickets sold out", err)
+        console.log("event tickets sold out")
         return res.status(500).send({ status: "failure", message: "event sold out" });
     }
 }

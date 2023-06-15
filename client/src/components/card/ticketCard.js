@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './card.css'
 
 export default function TicketCard({ticket}) {
-    const {name, organizer, start, description, venue, price, imageUrl} = ticket;
+    const {name, organizer, start, venue, price, imageUrl} = ticket;
 
     const date = (dateString) => {
       const dayArr = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
@@ -28,7 +28,7 @@ export default function TicketCard({ticket}) {
           />
 
           <div className="inner-box ticket-box">
-          <div className="home-text3">{name}</div>
+            <div className="home-text3">{name}</div>
 
             <div className="home-text5">{date(start)}</div>
             <div className="home-text5">{venue}</div>

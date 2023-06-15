@@ -8,7 +8,6 @@ import { useAuth } from "../context/context";
 export default function Profile() {
 
   const [profileState, setProfile] = useState("event");
-  // const [priceState, setPriceState] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loading1, setLoading1] = useState(false);
   const [myEvents, setMyEvents] = useState([])
@@ -62,9 +61,7 @@ export default function Profile() {
     }
     getMyEvents()
     getMyTickets()
-    console.log("Events", myEvents);
-    console.log("Tickets", myTickets)
-  }, [currentUser]);
+  }, [currentUser, myEvents, myTickets]);
 
   return (
     <div>

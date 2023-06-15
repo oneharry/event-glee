@@ -16,7 +16,7 @@ export default function Discover() {
 
   useEffect(() => {
     getAllEvents();
-  })
+  }, [allEvents])
 
 
 

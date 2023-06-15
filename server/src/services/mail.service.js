@@ -8,9 +8,11 @@ const {createTicketPDF} = require('./pdf.service')
 * ticketId: id of the ticket
 * Returns: an array of tickets 
 */
-exports.sendMail = async (data, ticketId) => {
+exports.sendMail = async (data, user, ticketId) => {
 
-    const {email, name} = data;
+    const {name} = data;
+    const {email} = user;
+
 
     //create a document
     const doc = await createTicketPDF(data, ticketId);

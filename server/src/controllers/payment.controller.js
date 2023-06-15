@@ -1,5 +1,5 @@
 const {initializePayment, verifyPayment} = require('../utils/payment.utils')
-const {createTicket, getEventById} = require('../database')
+const {createTicket, getEventById, getUser} = require('../database')
 const {sendMail} = require('../services')
 
 
@@ -19,11 +19,12 @@ const getRandomNum = () => {
 * eventId: Id of the event
 * Returns: an array of the events object response owned by userId to client
 */
-const getTicket = async (eventId) => {
+const getTicket = async (eventId, userId) => {
     const ticketId = getRandomNum();
 
     try {
         const eventInfo = await getEventById(eventId);
+        const user = await getUser(userId)
     
         const myTicket = {
             "ticketId": ticketId,
@@ -32,7 +33,8 @@ const getTicket = async (eventId) => {
         }
 
         await createTicket(myTicket);
-        const mailRes = await sendMail(eventInfo, ticketId)
+        console.log("1", eventInfo);
+        const mailRes = await sendMail(eventInfo, user, ticketId)
         return (mailRes)
     } catch (err) {
         console.log("DB failed", err)
@@ -48,27 +50,32 @@ const getTicket = async (eventId) => {
 */
 exports.buyTicket = async (req, res) => {
 
+
     try {
-        if (req.body.amount === 0) {
-            //if ticket price is free
-            const {eventId} = req.body;
-            getTicket(eventId)
-            res.status(200).json({status: "success"})
-        } else {
-            //if ticket price is not free
-            //initialize payment
-            initializePayment(req.body, (err, body) => {
-                if(err) {
-                    console.log(err)
-                    res.status(500).json({status: "failure", message: 'error initializing payment' });
-                } else {
-                    //redirect client to paystack payment url 
-                    const response = JSON.parse(body);
-                    console.log("create payment body", response)
-                    res.redirect(response.data.authorization_url)
-                }
-            })
-        }
+        const {eventId, userId} = req.body;
+        getTicket(eventId, userId)
+        res.status(200).json({status: "success"})
+
+        // if (req.body.amount === '0') {
+        //     //if ticket price is free
+        //     const {eventId} = req.body;
+        //     getTicket(eventId)
+        //     res.status(200).json({status: "success"})
+        // } else {
+        //     //if ticket price is not free
+        //     //initialize payment
+        //     initializePayment(req.body, (err, body) => {
+        //         if(err) {
+        //             console.log(err)
+        //             res.status(500).json({status: "failure", message: 'error initializing payment' });
+        //         } else {
+        //             //redirect client to paystack payment url 
+        //             const response = JSON.parse(body);
+        //             console.log("create payment body", response)
+        //             res.redirect(response.data.authorization_url)
+        //         }
+        //     })
+        // }
 
     } catch (error) {
         console.log("error initializing payment")

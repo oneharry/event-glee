@@ -196,7 +196,7 @@ export default function Event() {
                 </div>
               </div>
 
-              <div className="input-box">
+              {/* <div className="input-box">
                 <div className="event-title">Ticket price(Leave blank if ticket is free)</div>
                 <div>
                   <input
@@ -208,7 +208,7 @@ export default function Event() {
                   />
                   
                 </div>
-              </div>
+              </div> */}
 
               <div className="input-box">
                 <div className="event-title">Number of tickets</div>

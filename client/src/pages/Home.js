@@ -14,6 +14,7 @@ const {currentUser, getUserJWT, allEvents, getAllEvents, errmsg} = useAuth();
 useEffect(() => {
   if (currentUser) {
      getUserJWT()
+     console.log("HomeUser", currentUser)
   }
   getAllEvents();
   
