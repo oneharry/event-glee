@@ -70,8 +70,8 @@ export default function Register() {
     <div>
       {errmsg !== '' && <Display /> }
         <form>
-          <section className="event-section1">
-            <div className="event-text1">Sign Up</div>
+          <section className="">
+            <div className="event-text1 text-dark">Sign Up</div>
             <div className="line-flex">
               
               <div className="line1"></div>

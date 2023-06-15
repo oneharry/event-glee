@@ -36,7 +36,7 @@ const Navbar = () => {
                 {
                   !currentUser ? (<Link className="nav-link" to={'/register'}> Sign Up</Link>) : (
                     <div>
-                      <button className="nav-button sign-out" onClick={logout}> Sign Out</button>
+                      <button className="nav-button btn btn-danger" onClick={logout}> Sign Out</button>
                       
                     </div>)
               }

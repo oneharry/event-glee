@@ -3,6 +3,7 @@ import {Home, Discover, Profile, Event, Login, Register} from './pages/index';
 import { AuthProvider} from "./context/context";
 import { Display, Footer, Navbar } from "./components";
 import 'bootstrap/dist/js/bootstrap.bundle';
+import './App.css'
 
 
 

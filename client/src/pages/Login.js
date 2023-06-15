@@ -56,8 +56,8 @@ export default function Login() {
     <div>
       {errmsg !== '' && <Display /> }
         <form>
-          <section className="event-section1">
-            <div className="event-text1">Sign In</div>
+          <section className="">
+            <div className="event-text1 text-dark">Sign In</div>
             <div className="line-flex">
               
               <div className="line1"></div>
