@@ -110,7 +110,7 @@ export default function Event() {
     <div>
       {errmsg !== '' && <Display /> }
         <form>
-          <section className="">
+          <section className="px-4">
             <div className="event-text1 text-dark">Create Event</div>
             <div className="line-flex">
               <div className="line1"></div>

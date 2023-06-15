@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './card.css';
 import { useAuth } from '../../context/context';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import { Modal } from 'bootstrap'
 export default function EventCard({event}) {
 
   const [loading, setLoading] = useState(false);
+  const [isSold, setIsSold] = useState(false);
   const {name, category, organizer, start, description, venue, amount, eventId, imageUrl} = event;
   const {currentUser, getUserJWT, setDisplayMsg, loadingTicket, setLoadingTicket} = useAuth()
   const modalRef = useRef()
@@ -32,11 +33,9 @@ export default function EventCard({event}) {
 
 
   const isSoldOut = (item) => {
-    
     const totalTickets = item.totalTickets;
     const soldTickets = item.numSold;
-
-    return (soldTickets >= totalTickets)
+    setIsSold(soldTickets >= totalTickets)
   }
 
 
@@ -69,7 +68,8 @@ export default function EventCard({event}) {
       const headers = {
         authorization: `Bearer ${token}`
       }
-      const res = await axios.post('/api/ticket', data, { headers} );
+      await axios.post('/api/ticket', data, { headers} );
+      isSoldOut(event);
       setLoading(false)
       setLoadingTicket(false)
       setDisplayMsg("Success, ckeck your email for your ticket", "success")
@@ -81,10 +81,14 @@ export default function EventCard({event}) {
     }
 
   }
+
+  useEffect(() => {
+    isSoldOut(event)
+  }, [isSold, isSoldOut, event]);
     
     return (
 
-      <div className=" home-box card mx-2 mb-5 border-0" key={eventId}>
+      <div className=" home-box mx-2 mb-5 border-0" key={eventId}>
           <img
             className="img-img-top"
             src={imageUrl}
@@ -102,10 +106,10 @@ export default function EventCard({event}) {
             <div><a href='#f' className="text-end" onClick={showModal}>show more</a></div>
             <div className='d-flex justify-content-end'>
             {
-              isSoldOut(event) ? <h3 style={{textAlign: "end", color: "gray", fontWeight: "bolder", paddingRight: "5px"}}>Sold Out</h3> : null
+              isSold ? <h3 style={{textAlign: "end", color: "gray", fontWeight: "bolder", paddingRight: "5px"}}>Sold Out</h3> : null
             }
             {
-              (!currentUser || isSoldOut(event)) ? null : (
+              (!currentUser || isSold) ? null : (
                 <button className=" button btn btn-success btn-md btn-block text-wrap" //"create-but"
                 type='submit'
                   disabled={loadingTicket}
@@ -129,6 +133,7 @@ export default function EventCard({event}) {
                   
                       <img
                         className="img-img-top"
+                        style={{width: "18rem"}}
                         src={imageUrl}
                         alt={name}
                       />
@@ -142,10 +147,10 @@ export default function EventCard({event}) {
                       <div className="card-text fs-5 text-dark text-wrap">{organizer} | <span className='text-end'>{category} </span></div>
                       <div className='d-flex justify-content-end'>
                         {
-                          isSoldOut(event) ? <h3 style={{textAlign: "end", color: "gray", fontWeight: "bolder", paddingRight: "5px"}}>Sold Out</h3> : null
+                          isSold ? <h3 style={{textAlign: "end", color: "gray", fontWeight: "bolder", paddingRight: "5px"}}>Sold Out</h3> : null
                         }
                         {
-                          (!currentUser || isSoldOut(event)) ? null : (
+                          (!currentUser || isSold) ? null : (
                             <button className="btn btn-success p-2 text-wrap "
                             type='submit'
                               disabled={loadingTicket}
