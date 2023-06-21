@@ -27,13 +27,12 @@ console.log(allEvents)
       <div id='home'>
         {errmsg !== '' && <Display /> }
         <div className="event">
-          <div class="card bg-dark text-white border-0" >
-            <img src="https://images.pexels.com/photos/6315037/pexels-photo-6315037.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img" alt="..." height="500" />
-            <div class="card-img-overlay d-flex flex-column justify-content-center">
+          <div class="home-text1 text-dark border-0" >
+            <div class="d-flex flex-column justify-content-center">
               <div className='d-flex flex-column justify-content-center align-items-center text-center text-md-start'>
                 <h1 className='d-flex flex-column justify-content-center align-items-center text-dark text-center text-md-start w-75 fw-bolder'>Discover and book events, concerts and more with EventGlee, the ultimate solution for securing tickets to the most exciting events in Nigeria</h1>
               </div>
-              <div className="home-buttons d-flex justify-content-center">
+              <div className="home-buttons d-flex py-3 justify-content-center">
                 <button className="btn btn-success"  >
                   <Link  to="/discover" className="home-link fw-normal fs-5 text-light w-100">
                     Discover events

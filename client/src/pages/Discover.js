@@ -1,12 +1,12 @@
 import './css/Discover.css';
 import { useAuth } from '../context/context';
-import { EventCard } from "../components";
+import { Display, EventCard } from "../components";
 import { useEffect } from 'react';
 
 
 export default function Discover() {
 
-  const { filteredEvents, searchQuery, allEvents, getAllEvents, handleSearch } = useAuth();
+  const { filteredEvents, searchQuery, allEvents, errmsg, getAllEvents, handleSearch } = useAuth();
   let myEvents;
   if(searchQuery === '') {
     myEvents = allEvents
@@ -23,6 +23,7 @@ export default function Discover() {
 
   return (
     <div className="main d-flex flex-column align-items-center">
+      {errmsg !== '' && <Display /> }
       <input class="form-control me-2 w-75 col" 
       type="search" 
       placeholder="Search event name, category" 

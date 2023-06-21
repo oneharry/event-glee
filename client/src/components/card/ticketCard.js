@@ -33,7 +33,7 @@ export default function TicketCard({ticket}) {
             <div className="home-text5">{date(start)}</div>
             <div className="home-text5">{venue}</div>
             <div className="home-text5">{organizer}</div>
-            <div className="home-text6">
+            <div className="home-text5">
                { (price > 0) ? `N${price}` : "Free"}
             </div>
             

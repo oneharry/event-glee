@@ -91,20 +91,20 @@ export default function EventCard({event}) {
 
       <div className=" home-box mx-1 my-1 border-0" key={eventId}>
           <img
-            className="img-img-top"
+            className="img"
             src={imageUrl}
             alt={name}
           />
           <div className="card-body px-5 mx-2">
             <div className="card-text fs-3 text-success text-wrap text-dark">{name}</div>
             
-            <div className="card-text date text-muted text-center fs-5 my-1">{date(start)}</div>
+            <div className="card-text date text-muted fs-5 my-1">{date(start)}</div>
             <div className="card-text venue fs-5 text-success my-1 text-wrap"><strong>{venue}</strong></div>
             <div className="card-text fs-5 my-1 text-dark">
                { (amount > 0) ? `N${amount}` : "Free"}
             </div>
             <div className="card-text fs-5 my-1 text-wrap text-dark">{organizer}</div>
-            <div><a href='#f' className="text-end" onClick={showModal}>show more</a></div>
+            <div><a href='#f' onClick={showModal}>show more</a></div>
             <div className='d-flex justify-content-end'>
             {
               isSold ? <h3 style={{textAlign: "end", color: "gray", fontWeight: "bolder", paddingRight: "5px"}}>Sold Out</h3> : null
@@ -130,10 +130,9 @@ export default function EventCard({event}) {
                   <h5 className="modal-title fs-1 text-success text-center text-wrap">{name}</h5>
                   <button type="button" className="btn-close" onClick={hideModal} data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div className="modal-body d-flex flex-column w-100 align-items-center flex-md-row flex-wrap">
-                  
+                <div className="modal-body d-flex flex-column w-100 align-items-center flex-md-row flex-wrap"> 
                       <img
-                        className="img-img-top"
+                        className="img"
                         style={{width: "18rem"}}
                         src={imageUrl}
                         alt={name}
@@ -152,10 +151,10 @@ export default function EventCard({event}) {
                         }
                         {
                           (!currentUser || isSold) ? null : (
-                            <button className="btn btn-success p-2 text-wrap "
+                            <button className="btn btn-success p-2 text-wrap"
                             type='submit'
                               disabled={loadingTicket}
-                              style={loadingTicket ? {cursor: 'progress', backgroundColor: '#7a9b91'} : null}
+                              style={loadingTicket ? {cursor: 'progress', backgroundColor: '#7a9b91', width: '100px'} : null}
                               onClick={handleTicket}
                               > { loading ? (<LoadingButton />) : "Get Ticket"}
                             </button>

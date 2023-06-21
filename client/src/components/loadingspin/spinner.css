@@ -1,7 +1,5 @@
 .loader {
-    position: absolute;
-    top: 30%;
-    left: 50%;
+    margin: 0 auto;
     transform: translate(-50%, -50%);
     width: 20px;
     height: 20px;

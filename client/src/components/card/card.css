@@ -92,3 +92,7 @@ color: #4c4d4c;
   padding-bottom: 10px;
   color: #4c4d4c;
 }
+
+.btn {
+  width: 100px;
+}

@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
           const result = res.data.data;
           console.log("R", result)
           const upcomingEvents = result.filter((event) => eventDate(event.start) >= today)
-          setEvents(upcomingEvents)
+          setEvents(result)
           console.log("T", upcomingEvents);
           setLoading(false)
         } catch (error) {

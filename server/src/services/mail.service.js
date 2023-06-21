@@ -12,6 +12,7 @@ exports.sendMail = async (data, user, ticketId) => {
 
     const {name} = data;
     const {email} = user;
+    
 
 
     //create a document
