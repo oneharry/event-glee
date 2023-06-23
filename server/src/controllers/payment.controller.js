@@ -53,9 +53,9 @@ exports.buyTicket = async (req, res) => {
 
     try {
         const {eventId, userId} = req.body;
-        getTicket(eventId, userId)
+        await getTicket(eventId, userId)
         res.status(200).json({status: "success"})
-
+        process.exit();
         // if (req.body.amount === '0') {
         //     //if ticket price is free
         //     const {eventId} = req.body;

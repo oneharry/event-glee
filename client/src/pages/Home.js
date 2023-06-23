@@ -32,12 +32,10 @@ console.log(allEvents)
               <div className='d-flex flex-column justify-content-center align-items-center text-center text-md-start'>
                 <h1 className='d-flex flex-column justify-content-center align-items-center text-dark text-center text-md-start w-75 fw-bolder'>Discover and book events, concerts and more with EventGlee, the ultimate solution for securing tickets to the most exciting events in Nigeria</h1>
               </div>
-              <div className="home-buttons d-flex py-3 justify-content-center">
-                <button className="btn btn-success"  >
+              <div className="home-buttons justify-content-center">
                   <Link  to="/discover" className="home-link fw-normal fs-5 text-light w-100">
                     Discover events
                   </Link>
-                </button>
               </div>
             </div>
           </div>

@@ -28,8 +28,8 @@
   }
 
   .home-buttons {
-    margin: 20px 0;
-    width: 65px;
+    margin: 0 auto;
+    width: 100px;
   }
 
   .home-discover-but {
@@ -76,6 +76,7 @@
 
   .home-link {
     font-family: "League Spartan", sans-serif;
+    background-color: #026447;
     color: #def3ec;
     text-decoration: none;
     height: 100%;
