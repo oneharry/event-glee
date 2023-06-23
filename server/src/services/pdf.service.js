@@ -95,7 +95,7 @@ exports.createTicketPDF = async (data, ticketId) => {
         .fontSize(8)
         .text("Want to organize events? visit eventglee.com", {
             align: 'right',
-            link: 'www.google.com',
+            link: 'www.oneharry.tech',
             align: 'right'
         })
 

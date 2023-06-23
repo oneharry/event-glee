@@ -59,13 +59,11 @@ export const AuthProvider = ({ children }) => {
           setLoading(true)
           const res = await axios.get('/api/events')
           const result = res.data.data;
-          console.log("R", result)
           const upcomingEvents = result.filter((event) => eventDate(event.start) >= today)
-          setEvents(result)
-          console.log("T", upcomingEvents);
+          setEvents(upcomingEvents)
           setLoading(false)
         } catch (error) {
-          console.log("Error loading events")
+          console.log("Error loading events", error)
         }
       }
 

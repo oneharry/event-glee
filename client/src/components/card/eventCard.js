@@ -89,13 +89,13 @@ export default function EventCard({event}) {
     
     return (
 
-      <div className=" home-box mx-1 my-1 border-0" key={eventId}>
+      <div className="home-box mx-1 my-1 border-0" key={eventId}>
           <img
             className="img"
             src={imageUrl}
             alt={name}
           />
-          <div className="card-body px-5 mx-2">
+          <div className="card-body mx-2">
             <div className="card-text fs-3 text-success text-wrap text-dark">{name}</div>
             
             <div className="card-text date text-muted fs-5 my-1">{date(start)}</div>
