@@ -115,7 +115,7 @@ console.log(allEvents)
                     The timeline for this project spanned across 3 weeks of intensive research and 3 weeks of actual development
                   </p>
                   <p className='fs-5'>The source code and project documentation can be found in the github repository for the project.</p>
-                  <a className='btn btn-success' href='https://github.com/oneharry/event-glee'>Go to Github repository</a>
+                  <a className='home-link'  href='https://github.com/oneharry/event-glee'>Go to Github repository</a>
                   </div>
               </div>
               <hr></hr>
