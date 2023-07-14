@@ -5,8 +5,11 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "start": "node server.js && cd client && npm start",
+    "start": "node server.js",
     "test": "jest"
+  },
+  "engines": {
+    "node": "12.21.0"
   },
   "keywords": [],
   "author": "",
