@@ -1,0 +1,24 @@
+{
+  "name": "event-glee",
+  "version": "1.0.0",
+  "description": "\"# Backend of event ticketing\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd server && nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oneharry/event-glee.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oneharry/event-glee/issues"
+  },
+  "homepage": "https://github.com/oneharry/event-glee#readme",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
